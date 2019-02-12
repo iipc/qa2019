@@ -10,7 +10,7 @@ Resources for the IIPC QA hackathon
 ### Tools
 
 Web archive QA
-* [Memento Damage](http://memento-damage.cs.odu.edu/) - weighted scores for missing subresources
+* [Memento Damage](http://memento-damage.cs.odu.edu/) - weighted scores for missing subresources ([blog](https://ws-dl.blogspot.com/2017/11/2017-11-22-deploying-memento-damage.html)) ([github](https://github.com/oduwsdl/web-memento-damage))
 
 Screenshotting
 * [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome#screenshots)
