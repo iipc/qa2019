@@ -1,7 +1,7 @@
 # qa
 Resources for the IIPC QA hackathon
 
-## Prior work
+## Useful Links
 
 ### Datasets
 
