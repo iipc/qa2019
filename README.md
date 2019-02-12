@@ -5,7 +5,7 @@ Resources for the IIPC QA hackathon
 
 ### Datasets
 
-* [Webis 2017](https://zenodo.org/record/1002204) - commons crawl screenshots + human qualtiy scores ([paper](https://webis.de/downloads/publications/papers/stein_2018v.pdf))
+* [Webis 2017 data](https://zenodo.org/record/1002204) - commons crawl screenshots + human qualtiy scores ([paper](https://webis.de/downloads/publications/papers/stein_2018v.pdf))
 
 ### Tools
 
