@@ -14,5 +14,5 @@ Web archive QA
 
 Screenshotting
 * [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome#screenshots)
-* [Headless Firefox](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Headless_mode)
+* [Headless Firefox](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Headless_mode#Taking_screenshots)
 * [Selenium WebDriver](https://www.seleniumhq.org/projects/webdriver/)
