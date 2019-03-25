@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+
+  pywb:
+    image: webrecorder/pywb
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./webarchive:/webarchive
+      
