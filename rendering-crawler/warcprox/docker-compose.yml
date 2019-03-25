@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+
+  # WARC Proxy, with de-duplication disabled and a rapid rollover period:
+  warcprox:
+    image: ukwa/warcprox:2.3.1
+    command: "warcprox -b 0.0.0.0 -d /warcs --base32 --gzip --rollover-idle-time 600 --dedup-db-file /dev/null --stats-db-file /dev/null"
+    environment:
+      - "LC_ALL=en_US.utf8"
+      - "TMP=/tmp/warcprox"
+    ports:
+      - "8000:8000"
+    ulimits:
+      nproc: 2000 # See https://github.com/internetarchive/warcprox/blob/2.x/warcprox/warcproxy.py#L413
+    volumes:
+      - ../warcs:/warcs
+      
