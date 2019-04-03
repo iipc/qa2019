@@ -11,5 +11,7 @@ Let's fill this in
 ### Installing
 
 ```
-# type some code into your terminal
+git clone https://github.com/iipc/qa2019 
+git checkout visual-qa
+# write code
 ```
