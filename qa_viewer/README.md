@@ -12,3 +12,5 @@ You'll need the following tools
 You can install those requirements with `pip install -r requirements.txt`. 
 
 You can start the prototype with the following command: `python wsgi_waitress.py` and browse the result at [http://localhost:5000]()
+
+You'll need the screenshots dataset to see them in the UI. You need to copy them in the `static/screenshots/` directory. 
