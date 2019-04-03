@@ -1,3 +1,4 @@
+Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appearence,QA Issue - Functionality,Open Access,Primary URL,Other URLs
 2949,Scotland.org,LIVE,QA issues found,False,False,False,True,http://www.scotland.org/,['https://www.scotland.org/sitemap.xml']
 2201,John Redwood (Conservative  Politician),LIVE,No QA issues found (OK to publish),True,False,False,True,http://www.johnredwoodsdiary.com/,['http://johnredwoodsdiary.com/']
 42922,Historic Environment Scotland / Àrainneachd Eachdraidheil Alba,LIVE,"QA issues, but OK to publish",False,False,False,True,https://www.historicenvironment.scot/,"['https://pub-prod-sdk.azurewebsites.net/api/file/', 'https://hesmainprod.blob.core.windows.net/', 'https://www.historicenvironment.scot/sitemap.xml']"
