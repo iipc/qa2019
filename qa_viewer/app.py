@@ -2,10 +2,6 @@
 
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-from wtforms import RadioField, SubmitField
-from wtforms.validators import DataRequired
-from flask_ckeditor import CKEditor, CKEditorField
 from datetime import datetime
 import json
 
@@ -18,7 +14,6 @@ app.config["CKEDITOR_HEIGHT"] = 300
 app.secret_key = "promise&qa"
 
 bootstrap = Bootstrap(app)
-ckeditor = CKEditor(app)
 
 
 @app.route("/")
