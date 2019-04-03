@@ -117,7 +117,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 32954,"1916 Relatives Association, The ",LIVE,QA issues found,False,False,False,True,http://www.1916relatives.com/,[]
 44719,"Scottish Government, The [Beta]",LIVE,QA issues found,False,False,False,True,https://beta.gov.scot/,"['https://beta.gov.scot/sitemap.xml', 'https://beta.gov.scot/sitemap.publications.xml', 'https://beta.gov.scot/sitemap.news.xml']"
 14595,"Scottish Charity Appeals Panel, The (SCAP)",VANISHED,No QA issues found (OK to publish),False,False,False,True,http://www.scap.gov.uk/,['http://www.scap.gov.uk/sitemap/']
-16705,Blue Badge Scheme in Scotland,VANISHED,No QA issues found (OK to publish),False,False,False,True,http://www.bluebadgescotland.org/,[]
 14590,"Additional Support Needs Tribunals for Scotland, The (ASNTS)",VANISHED,"QA issues, but OK to publish",False,False,False,True,http://www.asntscotland.gov.uk/,['https://www.asntscotland.gov.uk/sitemap.xml']
 14593,Parole Board for Scotland,LIVE,QA issues found,False,False,False,True,http://www.scottishparoleboard.gov.uk/,[]
 14544,Scottish Criminal Cases Review Commission (SCCRC),LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.sccrc.org.uk/home.aspx,"['http://www.sccrc.org.uk', 'http://www.sccrc.org.uk/sitemap.xml.gz']"
@@ -249,7 +248,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 34142,Joe FitzPatrick - SNP MSP for Dundee City West.,DEAD,"QA issues, but OK to publish",False,False,False,True,http://joe.fitzpatrick.scot/,[]
 12702,Alison Johnstone MSP,DEAD,No QA issues found (OK to publish),False,False,False,True,http://alisonjohnstonemsp.com/,[]
 34138,Anne McTaggart MSP,DEAD,"QA issues, but OK to publish",False,False,False,True,http://annemctaggartmsp.com/,[]
-32841,Walk for Wallace,NO_LONGER_UPDATED,QA issues found,False,False,False,True,http://www.walkforwallace.com/,[]
 2926,McGonagall Online,,QA issues found,False,False,False,True,http://www.mcgonagall-online.org.uk/,[]
 30470,Voices for the Library,NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,True,http://www.voicesforthelibrary.org.uk/,[]
 12606,John Finnie MSP (JohnFinnieMSP) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,True,https://twitter.com/JohnFinnieMSP/,[]
@@ -284,11 +282,9 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 30799,Literature Forum Scotland,LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.literatureforumscotland.org.uk/,[]
 15972,Scotland's Referendum,LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.scotreferendum.com/,[]
 21389,Highland and Islands Greens,LIVE,"QA issues, but OK to publish",True,False,False,True,http://higreens.org/,[]
-2650,Nicky Morgan (Conservative  Politician),LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.nickymorgan.org/,[]
 14553,Water Industry Commission for Scotland (WICS),LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.watercommission.co.uk/,['http://www.watercommission.co.uk/view_Site_Map.aspx']
 3195,Visit Scotland,LIVE,QA issues found,False,False,False,True,http://www.visitscotland.com/,['https://www.visitscotland.com/sitemap.xml']
 3093,National Galleries Scotland,LIVE,"QA issues, but OK to publish",False,False,False,True,https://www.nationalgalleries.org/,['https://www.nationalgalleries.org/sitemap.xml']
-14517,Care Inspectorate,LIVE,No QA issues found (OK to publish),True,False,False,True,http://www.careinspectorate.com/,[]
 18244,UKIP Wales,LIVE,No QA issues found (OK to publish),False,False,False,True,http://ukip.wales/,['http://www.ukipwales.org.uk/']
 16347,Wales Green Party,LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.walesgreenparty.org.uk/,['https://wales.greenparty.org.uk/']
 30032,"Association for Scottish Literary Studies, The",LIVE,No QA issues found (OK to publish),False,False,False,True,http://asls.arts.gla.ac.uk/,[]
@@ -366,7 +362,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 3050,Education Scotland,LIVE,QA issues found,True,False,False,True,http://www.educationscotland.gov.uk/,[]
 14591,"Lands Tribunal for Scotland, The",LIVE,"QA issues, but OK to publish",False,False,False,True,http://www.lands-tribunal-scotland.org.uk/,['http://www.lands-tribunal-scotland.org.uk/sitemap.xml']
 14589,"Scottish Law Commission, The",LIVE,"QA issues, but OK to publish",False,False,False,True,http://www.scotlawcom.gov.uk/,['https://www.scotlawcom.gov.uk/sitemap.xml']
-14588,"Local Government Boundary Commission for Scotland, The",LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.lgbc-scotland.gov.uk/,"['http://www.lgbc-scotland.gov.uk/sitemap.asp', 'https://bcs-lgbcs.maps.arcgis.com/apps/PublicInformation/index.html?appid=06bdcd2bb3924378ba0fd1914320c0aa']"
 14587,"Judicial Appointments Board for Scotland, The",LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.judicialappointmentsscotland.org.uk,[]
 14551,Scottish Social Services Council (SSSC),LIVE,QA issues found,True,False,True,True,http://www.sssc.uk.com,['http://www.sssc.uk.com/site-map']
 14550,Scottish Qualifications Authority (SQA),,QA issues found,False,False,True,True,http://www.sqa.org.uk/,['http://www.sqa.org.uk/sitemap.xml.gz']
@@ -451,7 +446,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 29658,Valley Naturalist,LIVE,No QA issues found (OK to publish),True,False,False,True,http://valleynaturalist.blogspot.co.uk/,[]
 1800,Bracknell Forest Council,LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.bracknell-forest.gov.uk/,"['http://consult.bracknell-forest.gov.uk/portal/', 'http://democratic.bracknell-forest.gov.uk/']"
 28153,Alastair Campbell,LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.alastaircampbell.org/,[]
-35364,Ayrshire & Arran Liberal Democrats,LIVE,QA issues found,False,False,False,True,http://www.ayrshirelibdems.org.uk/,[]
 6723,Mid Devon District Council,,No QA issues found (OK to publish),False,False,False,True,http://www.middevon.gov.uk/,[]
 5958,Action on Smoking and Health (ASH),,No QA issues found (OK to publish),False,False,False,True,http://www.ash.org.uk/,[]
 2932,Mumsnet,,QA issues found,False,False,False,True,http://www.mumsnet.com/,[]
