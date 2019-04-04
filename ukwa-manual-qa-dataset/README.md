@@ -20,3 +20,16 @@ The form is
 The file is [`target-qa-dataset.csv`](./target-qa-dataset.csv).
 
 The [`target-qa-dataset-oa-subset.csv`](./target-qa-dataset-oa-subset.csv) file contains just the Open Access ones.
+
+To get to the playback version, you can prefix a URL with `https://www.webarchive.org.uk/wayback/archive/*/` to show the calender, eg. 
+
+https://www.webarchive.org.uk/wayback/archive/*/https://www.bl.uk
+
+Or you can use 'pretend dates' to bounce to the first:
+
+https://www.webarchive.org.uk/wayback/archive/19/https://www.bl.uk
+
+...or last version:
+
+https://www.webarchive.org.uk/wayback/archive/3/https://www.bl.uk
+

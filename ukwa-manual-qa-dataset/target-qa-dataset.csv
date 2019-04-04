@@ -54,7 +54,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 53773,Annabel Tall (@annabeltall ) on Twitter (Conservative Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/annabeltall/,[]
 81663,Hana Feels,LIVE,No QA issues found (OK to publish),False,False,False,True,http://hanafeels.com/index.html,"['http://hanafeels.com/images/will.png', 'http://hanafeels.com/images/mother.png', 'http://hanafeels.com/images/ernie.png', 'http://hanafeels.com/images/jen.png', 'http://hanafeels.com/images/christine.png', 'http://hanafeels.com/images/hanalogo.png', 'http://hanafeels.com/images/hanasil.png', 'http://hanafeels.com/images/hana2.png', 'http://hanafeels.com/images/hana.png', 'http://hanafeels.com/images', 'http://hanafeels.com/']"
 24843,Amy Gray (Conservative Politician),LIVE,"QA issues, but OK to publish",True,False,False,False,http://www.amygray.org.uk/,[]
-53766,Alberto Costa (@AlbertoCosta) on Twitter (Conservative Politician),VANISHED,"QA issues, but OK to publish",True,False,False,False,https://twitter.com/albertocostamp/,['https://twitter.com/AlbertoCosta/']
 22096,Louise Ellman (@LouiseEllman) on Twitter (Labour  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/louiseellman/,[]
 22042,John Woodcock (@JWoodcockMP) on Twitter (Labour  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/jwoodcockmp/,[]
 31181,Caithness Horizons,LIVE,QA issues found,False,False,False,False,http://www.caithnesshorizonsmuseum.com/,"['https://caithnesshorizons.wordpress.com/', 'http://www.caithnesshorizons.co.uk/']"
@@ -265,7 +264,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 44719,"Scottish Government, The [Beta]",LIVE,QA issues found,False,False,False,True,https://beta.gov.scot/,"['https://beta.gov.scot/sitemap.xml', 'https://beta.gov.scot/sitemap.publications.xml', 'https://beta.gov.scot/sitemap.news.xml']"
 14595,"Scottish Charity Appeals Panel, The (SCAP)",VANISHED,No QA issues found (OK to publish),False,False,False,True,http://www.scap.gov.uk/,['http://www.scap.gov.uk/sitemap/']
 16859,Finance.Scotland,VANISHED,"QA issues, but OK to publish",False,False,False,False,http://finance.scotland.gov.uk,[]
-16705,Blue Badge Scheme in Scotland,VANISHED,No QA issues found (OK to publish),False,False,False,True,http://www.bluebadgescotland.org/,[]
 14590,"Additional Support Needs Tribunals for Scotland, The (ASNTS)",VANISHED,"QA issues, but OK to publish",False,False,False,True,http://www.asntscotland.gov.uk/,['https://www.asntscotland.gov.uk/sitemap.xml']
 72004,Scotlands Health On the Web (SHOW) - Publications,LIVE,QA issues found,False,False,False,False,http://www.publications.scot.nhs.uk/,[]
 71996,Evolving Practices,DEAD,QA issues found,False,False,False,False,http://www.evolvingpractice.org/,[]
@@ -426,7 +424,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 36335,Kate Forbes,LIVE,"QA issues, but OK to publish",False,False,False,False,https://kateforbes.scot/,[]
 63534,Altnaharra and Farr Church,VANISHED,"QA issues, but OK to publish",False,False,False,False,http://bettyhillchurch.co.uk/,[]
 38590,John Finnie,LIVE,"QA issues, but OK to publish",False,False,False,False,https://johnfinnie.scot/,['https://johnfinnie.scot/sitemap.xml']
-12647,Neil Findlay MSP,LIVE,"QA issues, but OK to publish",False,False,False,False,https://www.neilfindlaymsp.com/,[]
 12646,Mary Fee MSP,LIVE,QA issues found,False,False,False,True,http://maryfeemsp.com/,['https://maryfeemsp.com/sitemap.xml']
 34466,Linda Fabiani,LIVE,QA issues found,False,False,False,False,https://lindafabiani.scot/,['https://lindafabiani.scot/sitemap.xml.gz']
 34293,"Fergus Ewing MSP, Minister for Business, Energy and Tourism, Inverness & Nairn Constituency",LIVE,"QA issues, but OK to publish",False,False,False,False,http://www.fergusewing.com/,[]
@@ -666,7 +663,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 16399,University of Dundee,LIVE,QA issues found,False,False,False,False,https://www.dundee.ac.uk/,['https://www.dundee.ac.uk/news/rss/index.html']
 30479,Abertay University,LIVE,QA issues found,False,False,False,False,https://www.abertay.ac.uk/,['https://www.abertay.ac.uk/sitemap/']
 16838,"University of Aberdeen, The",LIVE,QA issues found,False,False,False,False,https://www.abdn.ac.uk/,[]
-65278,Copyright Evidence,LIVE,QA issues found,False,False,False,False,http://www.copyrightevidence.org/,['http://www.copyrightevidence.org/evidence-wiki/index.php/Copyright_Evidence']
 9574,UK Independence Party (UKIP),LIVE,"QA issues, but OK to publish",True,False,False,False,http://www.ukip.org/,[]
 16320,UK Independence Party (@UKIP) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/ukip/,[]
 24858,Vince Cable (Liberal Democrats Politician),LIVE,QA issues found,True,False,False,False,http://www.vincecable.org.uk/,[]
@@ -693,7 +689,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 16310,"Co-operative Party, The (@CoopParty) on Twitter",LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/coopparty/,[]
 16191,Conservative Friends of Israel (CFI),LIVE,No QA issues found (OK to publish),False,False,False,False,http://www2.cfoi.co.uk/,[]
 16338,Conservative Party (@conservatives) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/conservatives/,[]
-54639,Scottish Communists,LIVE,"QA issues, but OK to publish",False,False,False,False,http://scottish-communists.org.uk/,[]
 4266,Scottish Socialist Party,LIVE,QA issues found,False,False,False,True,http://www.scottishsocialistparty.org/,['https://scottishsocialistparty.org/sitemap_index.xml']
 56988,NBN (National Biodiversity Atlas) Wales,LIVE,"QA issues, but OK to publish",False,False,False,False,https://wales.nbnatlas.org/,"['https://wales-records.nbnatlas.org/', 'https://wales-species.nbnatlas.org/']"
 36800,Ian Duncan (Conservative MEP for Scotland),VANISHED,"QA issues, but OK to publish",False,False,False,False,http://www.ianduncan.org.uk,[]
@@ -730,7 +725,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 54284,Caroline Ansell  (Conservative Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,http://carolineansell.co.uk/,[]
 11937,Cara Hilton MSP (cara_hilton) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/cara_hilton/,[]
 52877,Campbell 4 Angus (@Campbell4Angus) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,False,https://twitter.com/Campbell4Angus/,[]
-52874,Callum O'Dwyer (@callumjodwyer) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/callumjodwyer/,[]
 9476,British National Party,LIVE,No QA issues found (OK to publish),False,False,False,False,http://www.bnp.org.uk/,[]
 9935,British National Party (@bnp) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/bnp/,[]
 10583,Britain First,LIVE,QA issues found,True,False,False,False,http://www.britainfirst.org/,['https://www.facebook.com/OfficialBritainFirst/']
@@ -1077,7 +1071,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 39843,Kelvin Labour Party (@KelvinLabour) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/KelvinLabour/,[]
 11927,Jayne Baxter MSP (jayniebax) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/jayniebax/,[]
 11938,James Kelly MSP (JamesKLabMSP) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,True,https://twitter.com/JamesKLabMSP/,[]
-20989,Huw Bell (@HuwBell1) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,False,https://twitter.com/HuwBell1/,[]
 11936,Hugh Henry MSP (HughHenryMSP) on Twitter,LIVE,QA issues found,False,False,False,False,https://twitter.com/HughHenryMSP/,[]
 39876,Highlands and Islands Conservatives (@HIConservatives) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/HIConservatives/,[]
 44663,GlasgowReviewofBooks (@GlasgowRevBooks) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/GlasgowRevBooks/,[]
@@ -1141,7 +1134,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 45173,Storify: Buy land in Scotland... style yourself as Lord or Lady of Glencoe! Or something.,LIVE,"QA issues, but OK to publish",False,False,False,False,https://storify.com/MalcolmCombe/buy-land-in-scotland-style-yourself-as-lord-or-lad/,[]
 60608,"Brightsider, The",VANISHED,No QA issues found (OK to publish),False,False,False,False,http://www.thebrightsider.co.uk/,[]
 60580,East Renfrewshire Liberal Democrats,LIVE,No QA issues found (OK to publish),False,False,False,False,https://eastrenfrewshirelibdems.org.uk/,[]
-53135,Highlands and Islands Labour,LIVE,No QA issues found (OK to publish),False,False,False,False,http://hilabour.org.uk/,[]
 36190,Orkney Labour,LIVE,"QA issues, but OK to publish",False,False,False,False,http://www.orkneylabour.org.uk/,[]
 36451,Orkney Conservatives,LIVE,QA issues found,False,False,False,False,http://www.orkneyconservatives.com/,"['https://jamiehalcrojohnston.wordpress.com/sitemap.xml/', 'https://jamiehalcrojohnston.wordpress.com/news-sitemap.xml/']"
 60535,Scottish Borders Conservatives and Unionists,LIVE,"QA issues, but OK to publish",False,False,False,False,https://www.scottishbordersconservatives.org.uk/,['https://www.scottishbordersconservatives.org.uk/sitemap.xml/']
@@ -1220,7 +1212,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 12650,Cara Hilton MSP,LIVE,QA issues found,False,False,False,False,http://carahilton.org/,[]
 58547,David John Roche,LIVE,"Failed, Do Not Publish",False,False,True,False,https://www.davidjohnroche.com/,['https://www.davidjohnroche.com/sitemap.xml']
 58122,"McLellan Commission, The",LIVE,"QA issues, but OK to publish",False,False,False,False,https://www.mclellancommission.co.uk/,"['https://www.mclellancommission.co.uk/sitemap.xml', 'https://c1b97d33dc3c526603fd-28884af1fefdd6a83f1e24bde4f5fe42.ssl.cf3.rackcdn.com/the-mclellan-commission-a-review-of-the-current-safeguarding-policies-procedures-and-practice-within-the-catholic-church-in-scotland.pdf']"
-32841,Walk for Wallace,NO_LONGER_UPDATED,QA issues found,False,False,False,True,http://www.walkforwallace.com/,[]
 2926,McGonagall Online,,QA issues found,False,False,False,True,http://www.mcgonagall-online.org.uk/,[]
 30470,Voices for the Library,NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,True,http://www.voicesforthelibrary.org.uk/,[]
 12606,John Finnie MSP (JohnFinnieMSP) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,True,https://twitter.com/JohnFinnieMSP/,[]
@@ -1268,7 +1259,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 24928,Keir Starmer (@keir_starmer) on Twitter (Labour Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/keir_starmer/,[]
 46888,Michael Gove (@michaelgove) on Twitter (Conservative Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/michaelgove/,[]
 35307,Mike Hookem (UKIP Politician),NO_LONGER_UPDATED,"QA issues, but OK to publish",True,False,False,False,http://www.mike-hookem.org/,[]
-2650,Nicky Morgan (Conservative  Politician),LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.nickymorgan.org/,[]
 24878,Nick Clegg (Politician),VANISHED,No QA issues found (OK to publish),True,False,False,False,http://www.nickclegg.org.uk/,[]
 24659,Patrick O'Flynn (@oflynnmep) on Twitter (UKIP Politician),LIVE,No QA issues found (OK to publish),True,False,False,False,https://twitter.com/oflynnmep/,[]
 10751,Paul Nuttall (@paulnuttallukip ) on Twitter (UKIP Politician),VANISHED,No QA issues found (OK to publish),True,False,False,False,https://twitter.com/paulnuttallukip/,[]
@@ -1279,11 +1269,9 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 14553,Water Industry Commission for Scotland (WICS),LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.watercommission.co.uk/,['http://www.watercommission.co.uk/view_Site_Map.aspx']
 3195,Visit Scotland,LIVE,QA issues found,False,False,False,True,http://www.visitscotland.com/,['https://www.visitscotland.com/sitemap.xml']
 21763,Steven for Stirling,LIVE,QA issues found,True,False,False,False,http://www.stevenforstirling.com/,[]
-14539,Police Investigations & Review Commissioner (PIRC),DEAD,"Failed, Do Not Publish",False,False,False,False,http://www.pirc.scotland.gov,[]
 3093,National Galleries Scotland,LIVE,"QA issues, but OK to publish",False,False,False,True,https://www.nationalgalleries.org/,['https://www.nationalgalleries.org/sitemap.xml']
 21437,Midlothian Greens,LIVE,QA issues found,False,False,False,False,http://midlothiangreens.org.uk/,['http://midlothiangreens.org.uk/?cat=6']
 21682,Gavin Newlands for Paisley and Renfrewshire North,LIVE,"QA issues, but OK to publish",True,False,False,False,https://gavinnewlandssnp.wordpress.com/,[]
-14517,Care Inspectorate,LIVE,No QA issues found (OK to publish),True,False,False,True,http://www.careinspectorate.com/,[]
 21001,UKIP in Northern Ireland,LIVE,QA issues found,True,False,False,False,http://ukipni.com/,[]
 11220,UKIP in Northern Ireland (@ukip_ni) on Twitter,NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/UKIP_NI/,[]
 18244,UKIP Wales,LIVE,No QA issues found (OK to publish),False,False,False,True,http://ukip.wales/,['http://www.ukipwales.org.uk/']
@@ -1445,7 +1433,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 10378,Sandy Martin (@sandyofipswich) on Twitter (Labour Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/sandyofipswich/,[]
 24792,Sam Webber  (@samdwebber) on Twitter (Liberal Democrats Politician),LIVE,"QA issues, but OK to publish",False,False,False,False,https://twitter.com/samdwebber,[]
 53745,Sam Watts (UKIP Politician),NO_LONGER_UPDATED,"QA issues, but OK to publish",True,False,False,False,http://www.samwatts.net/,[]
-53747,Sam Watts(@swattsnhants) on Twitter  (UKIP Politician),LIVE,No QA issues found (OK to publish),True,False,False,False,https://twitter.com/swattsnhants/,[]
 54177,Sally Gathern (@sanng7) on Twitter (Labour Party Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/sanng7/,[]
 54063,Ryan Coshall (@RyanCoshall) on Twitter (UKIP Politician),VANISHED,No QA issues found (OK to publish),True,False,False,False,https://twitter.com/RyanCoshall/,[]
 52526,Ryan Bate (Liberal Democrats Politician),NO_LONGER_UPDATED,"QA issues, but OK to publish",True,False,False,True,https://ryanbate.org/,[]
@@ -1467,7 +1454,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 53734,RogansBlog.co.uk (UKIP Politician),LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.rogansblog.co.uk/,['http://www.paulrogan.info/']
 53777,Rob Wilson (Conservative Politician),VANISHED,"QA issues, but OK to publish",False,False,False,False,https://winwithwilson.com/,[]
 28548,Paul Scully (Conservative Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,http://www.scully.org.uk/,[]
-53697,Paul Sanderson (Independent  Politician),NO_LONGER_UPDATED,Recrawl Requested,True,False,False,False,https://www.paulsanderson.org/,[]
 53191,Paul Nuttall (UKIP Politician),NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,False,http://pnuttall.co.uk/,[]
 53195,Paul Kenny (@paul_r_kenny  ) on Twitter (Labour Politician),NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/paul_r_kenny/,[]
 54080,Paul Hickling UKIP (@hickling_paul1) on Twitter (UKIP Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/hickling_paul1/,[]
@@ -1493,7 +1479,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 54297,Rebecca Forrest (@Becky4BoltonW) on Twitter (Liberal Democrat Politician),LIVE,"QA issues, but OK to publish",True,False,False,False,https://twitter.com/Becky4BoltonW/,[]
 52704,Rachel Sadler (@rachelsadlertw) on Twitter (Liberal Democrats Politician),LIVE,Recrawl Requested,True,False,False,False,https://twitter.com/rachelsadlertw/,[]
 53918,Phillip Broughton (UKIP  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://phillipbroughton.wordpress.com/,[]
-53917,Phillip Broughton (@Phil_Broughton) on Twitter (UKIP Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/Phil_Broughton/,[]
 53699,Philip S Rose (@PhilipUKIP) on Twitter (UKIP Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/PhilipUKIP/,[]
 53674,Philip Dodd (@pdgreenparty) on Twitter (Green Party  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/@pdgreenparty/,[]
 53395,Philip Davies ( @PhilipDaviesUK) on Twitter (Conservative Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/philipdaviesuk/,[]
@@ -1590,7 +1575,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 54111,Margaret Greenwood (Labour  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,http://www.margaretgreenwood.org.uk/,[]
 53525,Marcus Fysh (Conservative  Politician),LIVE,No QA issues found (OK to publish),True,False,False,False,https://www.marcusfysh.org.uk/,[]
 54130,Mandy Garford (@MandyJGrace) on Twitter (Labour Party  Politician),LIVE,"QA issues, but OK to publish",True,False,False,False,https://twitter.com/MandyJGrace/,[]
-54274,Luke Shirley (@luke4telford) on Twitter (Green Party  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/luke4telford/,[]
 54193,Luke Pollard (Labour  Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,http://www.lukepollard.org/,[]
 53317,Lucy Powell (Labour  Politician),NO_LONGER_UPDATED,Recrawl Requested,True,False,False,False,https://www.justgiving.com/crowdfunding/lucy-powell/,[]
 53870,Lucy Frazer (@LucyFrazerUK ) on Twitter (Conservative Politician),LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/LucyFrazerUK/,[]
@@ -1782,7 +1766,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 29557,YouthLink Scotland,LIVE,QA issues found,False,False,True,True,https://www.youthlinkscotland.org/,['https://www.youthlinkscotland.org/xml-sitemap/']
 16748,Scottish Families Information Services,LIVE,"QA issues, but OK to publish",False,False,False,True,https://www.scottishfamilies.gov.uk/,[]
 48264,NHS Grampian,LIVE,QA issues found,False,False,False,False,http://nhsgrampian.org/,['http://www.nhsgrampian.org/nhsgrampian/gra_display.jsp?pContentID=90&p_applic=CCC&p_service=Content.show&']
-21880,Food Standards Scotland,LIVE,QA issues found,True,False,False,False,http://www.foodstandards.gov.scot/,['http://www.foodstandards.gov.scot/sitemap']
 29476,Scottish Government's Dialogue,LIVE,QA issues found,False,False,False,False,https://ideas.scotland.gov.uk/,['https://www.ideas.gov.scot/sitemap.xml.gz']
 16077,Scottish Canals,LIVE,QA issues found,True,False,False,False,http://www.scottishcanals.co.uk/,['https://www.scottishcanals.co.uk/sitemap.xml']
 16076,Highlands & Islands Airports (HIA),LIVE,QA issues found,True,False,False,False,http://www.hial.co.uk/,"['http://ripassetseu.s3.amazonaws.com/www.hial.co.uk/_files/documents/', 'http://www.hial.co.uk/sitemap.xml/']"
@@ -1816,7 +1799,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 53544,Liverpool Green Party General Election 2017 candidates,NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,True,https://liverpool.greenparty.org.uk/ge-2017.html/,[]
 54183,Houslow Liberal Democrats,LIVE,No QA issues found (OK to publish),False,False,False,False,https://hounslowlibdems.org.uk/,[]
 15895,Scottish Public Pensions Agency (SPPA),LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.sppa.gov.uk/,['http://www.sppa.gov.uk/index.php?option=com_xmap&sitemap=1&Itemid=703']
-53993,Croydon Green Party ,LIVE,QA issues found,True,False,False,False,https://croydon.greenparty.org.uk/,[]
 3161,Scottish Prison Service,LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.sps.gov.uk/,['http://www.sps.gov.uk/sitemap.aspx']
 56574,Historic Environment Scotland Portal,LIVE,"QA issues, but OK to publish",False,False,False,True,http://portal.historicenvironment.scot/,['https://inspire.hes.scot/']
 3067,Historic Scotland,DEAD,No QA issues found (OK to publish),True,False,False,True,http://www.historic-scotland.gov.uk/,[]
@@ -1824,7 +1806,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 3050,Education Scotland,LIVE,QA issues found,True,False,False,True,http://www.educationscotland.gov.uk/,[]
 14591,"Lands Tribunal for Scotland, The",LIVE,"QA issues, but OK to publish",False,False,False,True,http://www.lands-tribunal-scotland.org.uk/,['http://www.lands-tribunal-scotland.org.uk/sitemap.xml']
 14589,"Scottish Law Commission, The",LIVE,"QA issues, but OK to publish",False,False,False,True,http://www.scotlawcom.gov.uk/,['https://www.scotlawcom.gov.uk/sitemap.xml']
-14588,"Local Government Boundary Commission for Scotland, The",LIVE,"QA issues, but OK to publish",True,False,False,True,http://www.lgbc-scotland.gov.uk/,"['http://www.lgbc-scotland.gov.uk/sitemap.asp', 'https://bcs-lgbcs.maps.arcgis.com/apps/PublicInformation/index.html?appid=06bdcd2bb3924378ba0fd1914320c0aa']"
 14587,"Judicial Appointments Board for Scotland, The",LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.judicialappointmentsscotland.org.uk,[]
 14551,Scottish Social Services Council (SSSC),LIVE,QA issues found,True,False,True,True,http://www.sssc.uk.com,['http://www.sssc.uk.com/site-map']
 14550,Scottish Qualifications Authority (SQA),,QA issues found,False,False,True,True,http://www.sqa.org.uk/,['http://www.sqa.org.uk/sitemap.xml.gz']
@@ -1877,7 +1858,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 14254,International Internet Preservation Consortium ,LIVE,No QA issues found (OK to publish),False,False,False,True,http://gator1355.hostgator.com/~iipc/,"['http://netpreserve.org/', 'https://netpreserveblog.wordpress.com/', 'http://dev-iipc.pantheonsite.io/']"
 53271,Julien Pritchard(@Mega_Jules) on Twitter,NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/Mega_Jules/,[]
 24794,Nigel de Gruchy (@NigeldeGruchy) on Twitter (Labour Party candidate for Orpington),NO_LONGER_UPDATED,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/nigeldegruchy/,[]
-54268,Nick Perry (Liberal Democrat candidate for Hastings & Rye),NO_LONGER_UPDATED,"QA issues, but OK to publish",True,False,False,False,https://nickperrylibdem.wordpress.com/,[]
 56039,"Karen Sherrard, Comedy Writer and Performer",LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.karensherrard.com/,[]
 20283,Keep Scotland Beautiful,LIVE,QA issues found,False,False,False,False,http://www.keepscotlandbeautiful.org/,['http://www.keepscotlandbeautiful.org/sitemap']
 20278,Forth Estuary Forum,,No QA issues found (OK to publish),False,False,False,False,http://www.forthestuaryforum.co.uk/,[]
@@ -1920,7 +1900,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 52875,Ross Thomson MSP (@RossThomsonMSP) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/RossThomsonMSP/,[]
 53256,Jenny Wilson (@wilsjen) on Twitter,LIVE,No QA issues found (OK to publish),False,False,False,False,https://twitter.com/wilsjen/,[]
 52871,Kirsty Blackman (@KirstySNP) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,False,https://twitter.com/KirstySNP/,[]
-52873,Orr Vinegold (@OrrVinegoldLab) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,False,https://twitter.com/OrrVinegoldLab/,[]
 54175,"Courier, The: Scottish politics",LIVE,"QA issues, but OK to publish",False,False,False,False,https://www.thecourier.co.uk/category/news/politics/scottish-politics/,[]
 20691,UNISON Scotland (@unisonscot) on Twitter,LIVE,"QA issues, but OK to publish",True,False,False,True,https://twitter.com/unisonscot/,[]
 13203,ScotCen (ScotCen) on Twitter,LIVE,"QA issues, but OK to publish",False,False,False,True,https://twitter.com/ScotCen/,[]
@@ -2009,7 +1988,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 14868,Facebook: Better Together - Timeline Photos,LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.facebook.com/bettertogetheruk/photos/a.321977804552534.75744.301783293238652/728858353864475/,[]
 19583,Facebook: Claire Baker,LIVE,QA issues found,False,False,False,False,https://www.facebook.com/claire.baker.7359/,[]
 14862,Facebook: Better Together - SNP NHS Lies,LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.facebook.com/video.php?v=728024090614568/,[]
-14866,Facebook: Better Together - PLEASE SHARE: Historian and star of the amazing...,LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.facebook.com/bettertogetheruk/posts/728822797201364/,[]
 14869,Facebook: Better Together - Mobile Uploads,LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.facebook.com/bettertogetheruk/photos/a.588922347858077.1073741831.301783293238652/728890537194590/,[]
 14863,Facebook: Better Together - Love the NHS - Vote No,LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.facebook.com/video.php?v=728624613887849/,[]
 14864,"Facebook: Better Together - Love Scotland, Vote No (Riya)",LIVE,"Failed, Do Not Publish",False,False,False,False,https://www.facebook.com/video.php?v=728721793878131/,[]
@@ -2072,7 +2050,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 29779,Digital Preservation Coalition (DPC) ,LIVE,No QA issues found (OK to publish),False,False,False,True,http://www.dpconline.org/,[]
 3022,Care Quality Commission,LIVE,QA issues found,False,False,False,True,http://www.cqc.org.uk/,['https://www.cqc.org.uk/']
 2917,eFestivals UK,,QA issues found,False,False,False,True,,['http://www.efestivals.co.uk/']
-45153,Glasgow Live: Glasgow's Katherine Grainger becomes Britain's most successful woman Olympian,LIVE,QA issues found,False,False,False,False,http://www.glasgowlive.co.uk/sport/other-sport/glasgows-katherine-grainger-becomes-britains-11739220,[]
 21341,Dundee Liberal Democrats,LIVE,QA issues found,False,False,False,False,http://dundeelibdems.org.uk/en/,"['http://s.dundeelibdems.org.uk/', 'http://dundeelibdems.org.uk/en/contact#content']"
 1923,Sheffield City Council,,QA issues found,False,False,False,False,https://www.sheffield.gov.uk/,"['http://sheffielddemocracy.moderngov.co.uk/', 'https://sheffield.citizenspace.com/', 'http://www.floodprotectionsheffield.com/']"
 1914,Doncaster Metropolitan Borough Council,,QA issues found,False,False,False,False,http://www.doncaster.gov.uk/,['http://doncaster.moderngov.co.uk/']
@@ -2099,7 +2076,6 @@ Target ID,Title,Live Site Status,QA Result,QA Issue - Content,QA Issue - Appeare
 43054,Herald Scotland: Marathon man Callum Hawkins makes it to the Olympics with Tsegai Tewolde as brother Derek runs Rio qualifying time,LIVE,No QA issues found (OK to publish),False,False,False,False,http://www.heraldscotland.com/sport/other_sports/14449052.Marathon_man_Callum_Hawkins_makes_it_to_the_Olympics_with_Tsegai_Tewolde_as_brother_Derek_runs_Rio_qualifying_time/,[]
 3196,Visit Wales,LIVE,No QA issues found (OK to publish),False,False,False,False,,"['http://www.visitwales.co.uk/', 'http://www.visitwales.com/']"
 36412,West Scotland Liberal Democrats,LIVE,QA issues found,False,False,False,False,http://www.westscotlibdems.org.uk/,"['http://ldeastdunbartonshire.nationbuilder.com/themes/', 'https://player.vimeo.com/video/163437519']"
-35364,Ayrshire & Arran Liberal Democrats,LIVE,QA issues found,False,False,False,True,http://www.ayrshirelibdems.org.uk/,[]
 1813,West Berkshire Council,LIVE,QA issues found,True,False,False,False,http://www.westberks.gov.uk/,"['http://info.westberks.gov.uk/', 'http://decisionmaking.westberks.gov.uk/']"
 35368,North East Scotland Liberal Democrats,LIVE,No QA issues found (OK to publish),False,False,False,False,http://www.neld.org.uk/,[]
 35366,"Angus & Mearns Liberal Democrats: Working Year Round for Angus, Mearns & Stonehaven",LIVE,No QA issues found (OK to publish),False,False,False,False,http://angusmearnslibdems.org.uk,[]
