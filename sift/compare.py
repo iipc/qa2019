@@ -26,25 +26,26 @@ for entry in input_json:
     logging.info('working on entry with id "%s"', entry.get('id'))
     original = entry.get('original', {})
     input_module = original.get('input_module')
-    input_module = importlib.import_module(input_module, 'input')
+    input_module = importlib.import_module('input.{}'.format(input_module))
     logging.info('imported "%s" to read original version',  input_module)
-    original_file = input_module.fetch(original.get('url'), **original.get("additonal_arguments"))
+    original_file = input_module.fetch(original.get('url'), **original.get("additonal_arguments", {}))
     
     archived = entry.get('archived', {})
     input_module = archived.get('input_module')
-    input_module = importlib.import_module(input_module, 'input')
+    input_module = importlib.import_module('input.{}'.format(input_module))
     logging.info('imported "%s" to read archived version',  input_module)
-    archived_file = input_module.fetch(archived.get('url'), **original.get("additonal_arguments"))
+    archived_file = input_module.fetch(archived.get('url'), **original.get("additonal_arguments", {}))
 
     comparison_modules = entry.get('comparison_modules')
     comparison_results = []
     for comparison_item in comparison_modules:
         comparison_result = {}
         logging.info('comparing %s and %s via %s:', original_file, archived_file, comparison_item)
-        comparison_module = importlib.import_module(comparison_module, 'comparison')
+        comparison_module = "comparison.{}".format(comparison_item)
+        comparison_result['module'] = comparison_module
+        comparison_module = importlib.import_module(comparison_module)
         comparison_result['short_name'] = comparison_item
         comparison_result['name'] = comparison_module.__doc__.split("\n")[0]
-        comparison_result['module'] = "comparisons.{}".format(comparison_item)
         comparison_result['score'], comparison_result['metadata'] = comparison_module.compare(original_file, archived_file)
     output_dict = { 
             'id': entry.get('id'),
@@ -53,4 +54,4 @@ for entry in input_json:
             }
     output.append(output_dict)
 
-json.dump(args.output_file if args.output_file else sys.stdout)
+json.dump(output, args.output_file if args.output_file else sys.stdout)
