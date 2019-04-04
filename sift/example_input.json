@@ -7,11 +7,11 @@
     }
     "original": {
        "input_module": "example",
-       "url": "/screenshots/7d6cb61f164251ec5693246c6a8e636de09555b4.jpeg" 
+       "url": "7d6cb61f164251ec5693246c6a8e636de09555b4.jpeg" 
     }, 
     "archived": {
        "input_module": "example",
-       "url": "/screenshots/7d6cb61f164251ec5693246c6a8e636de09555b4-archived.jpeg"
+       "url": "7d6cb61f164251ec5693246c6a8e636de09555b4-archived.jpeg"
     }
   },
   {
