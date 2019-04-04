@@ -6,13 +6,14 @@
   	"Title": "Example URL"
     }
     "original": {
-       "input_module": "example",
+       "input_module": "wayback-puppeteer",
        "url": "7d6cb61f164251ec5693246c6a8e636de09555b4.jpeg" 
     }, 
     "archived": {
-       "input_module": "example",
+       "input_module": "wayback-puppeteer",
        "url": "7d6cb61f164251ec5693246c6a8e636de09555b4-archived.jpeg"
-    }
+    },
+    "comparison_modules": ["ssim"]
   },
   {
     "id": 2,
