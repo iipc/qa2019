@@ -2,17 +2,31 @@
   {
     "id": 1,
     "metadata": {
-       "url": "https://www.tournai.be/actualites/prix-de-la-litterature-francaise-appel-a-candidatures.html",
-       "Title": "Example URL"
+      "url": "https://www.tournai.be/actualites/prix-de-la-litterature-francaise-appel-a-candidatures.html",
+      "Title": "Prix de la littérature française : appel à candidatures - Actualités - TOURNAI.be"
     },
-    "comparison_results": {
-       "short_name": "sim",
-       "module": "comparisons.sim",
-       "name": "Similarity Hash",
-       "score": 0.484812,
-       "metadata":[
-           {"filename": "output/screenshots/7d6cb61f164251ec5693246c6a8e636de09555b4-marked.jpeg"},
-           {"filename": "output/screenshots/7d6cb61f164251ec5693246c6a8e636de09555b4-archived-marked.jpeg"}
-       ]
-    }
+    "comparison_results": [
+      {
+        "module": "comparison.ssim",
+        "short_name": "ssim",
+        "name": "Structural Similarity (SSIM)",
+        "score": 0.7503034788298413,
+        "metadata": null
+      },
+      {
+        "module": "comparison.mse",
+        "short_name": "mse",
+        "name": "Mean Squared Error",
+        "score": 8759.388730029048,
+        "metadata": null
+      },
+      {
+        "module": "comparison.sad",
+        "short_name": "sad",
+        "name": "Sum of Absolute Difference",
+        "score": 92.0760061024329,
+        "metadata": null
+      }
+    ]
   }
+]
