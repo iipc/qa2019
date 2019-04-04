@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}PROMISE | QA Experiment{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+  <h2>Quality of the archiving of {{ url }}</h2>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md">
+				<h3>Automated Quality Metrics</h3>
+				<p>
+					The SSIM of <a href="{{ url | safe }}">{{ url | safe }}</a> is of <strong>{{ '%0.2f' % data['ssim_percent'] }}%</strong>.
+				</p>
+				<p>
+					The VQI of  <a href="{{ url | safe }}">{{ url | safe }}</a> is of <strong>{{ '%0.2f' % data['vqi_percent'] }}%</strong>.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<h3>Visualization of the differences</h3>
+			<div class="col-md-6">
+        <h3><strong>Original</strong> version with marks</h3>
+        <img src="{{ url_for('static', filename=data['original_marked']) }}" width="100%" />
+        <ul>
+          <li><strong>Live version</strong>: <a href="{{ url_for('static', filename=data['original']) }}">{{ data['original'] }}</a></li>
+          <li><strong>Live version (marked)</strong>: <a href="{{ url_for('static', filename=data['original_marked']) }}">{{ data['original_marked'] }}</a></li>
+        </ul>
+			</div>
+			<div class="col-md-6">
+        <h3><strong>Archived</strong> version with marks</h3>
+        <img src="{{ url_for('static', filename=data['archived_marked']) }}" width="100%" />
+        <ul>
+          <li><strong>Archived version</strong>: <a href="{{ url_for('static', filename=data['archived']) }}">{{ data['archived'] }}</a></li>
+          <li><strong>Archived version (marked)</strong>: <a href="{{ url_for('static', filename=data['archived_marked']) }}">{{ data['archived_marked'] }}</a></li>
+        </ul>
+			</div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

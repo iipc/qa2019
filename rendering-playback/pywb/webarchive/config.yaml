@@ -1,2 +1,15 @@
+# Proxy configuration
 proxy:
   coll: qa-test
+  use_banner: false
+  enable_banner: false # More recent syntax for upcoming versions
+  enable_content_rewrite: false
+
+# redirect to exact url behavior
+redirect_to_exact: true
+
+# enable memento
+enable_memento: true
+
+# Disable replay frame to avoid any gap at the top of the page
+framed_replay: false

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}PROMISE | SSIM QC Experiment{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h2>List of single pages captured by Heritrix</h2>
+    <ol>
+        {% for url in ssim_computation_log%}
+        <li>
+            <strong><a href="{{ url_for('show', url=url) }}">{{ url | safe }}</a></strong>: <strong>SSIM</strong>: {{ '%0.2f' % ssim_computation_log[url]['ssim_percent']|float }}% | <strong>VQI</strong>: {{ '%0.2f' % ssim_computation_log[url]['vqi_percent']|float}}%
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+
+
+{% endblock %}

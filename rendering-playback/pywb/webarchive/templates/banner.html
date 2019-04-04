@@ -1,0 +1,3 @@
+{% if not env.pywb_proxy_magic or config.proxy.enable_banner | default(true) %}
+<link rel='stylesheet' href='{{ static_prefix }}/default_banner.css'/>
+{% endif %}
