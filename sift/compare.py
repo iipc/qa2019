@@ -28,13 +28,13 @@ for entry in input_json:
     input_module = original.get('input_module')
     input_module = importlib.import_module(input_module, 'input')
     logging.info('imported "%s" to read original version',  input_module)
-    original_file = input_module.fetch(original.get('url'))
+    original_file = input_module.fetch(original.get('url'), **original.get("additonal_arguments"))
     
     archived = entry.get('archived', {})
     input_module = archived.get('input_module')
     input_module = importlib.import_module(input_module, 'input')
     logging.info('imported "%s" to read archived version',  input_module)
-    archived_file = input_module.fetch(archived.get('url'))
+    archived_file = input_module.fetch(archived.get('url'), **original.get("additonal_arguments"))
 
     comparison_modules = entry.get('comparison_modules')
     comparison_results = []
