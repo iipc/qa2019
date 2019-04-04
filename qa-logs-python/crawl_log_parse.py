@@ -44,7 +44,7 @@ def normalize_crawl_entry(row):
     else:
         # splitting the row at the space before the json blob
         # and piecing them back together with the whole row
-        row = row[:-1] + ["-", row[-1][row[-1].index("{"):]]
+        row = row[:-1] + [row[-1][:row[-1].index("{")], row[-1][row[-1].index("{"):]]
 
     return row
 
