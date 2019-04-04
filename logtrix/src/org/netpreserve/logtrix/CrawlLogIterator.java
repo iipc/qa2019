@@ -1,59 +1,32 @@
-/* CrawlLogIterator
- * 
- * Created on 10.04.2006
- *
- * Copyright (C) 2006 National and University Library of Iceland
- * 
- * This file is part of the DeDuplicator (Heritrix add-on module).
- * 
- * DeDuplicator is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser Public License as published by
- * the Free Software Foundation; either version 2.1 of the License, or
- * any later version.
- * 
- * DeDuplicator is distributed in the hope that it will be useful, 
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser Public License
- * along with DeDuplicator; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- */
 package org.netpreserve.logtrix;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.NoSuchElementException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * Based on the CrawLogIterator in the DeDuplicator
- * 
- * @author Kristinn Sigur&eth;sson
- */
-public class CrawlLogIterator implements AutoCloseable{
-    public static final String EXTRA_REVISIT_PROFILE="RevisitProfile";
-    public static final String EXTRA_REVISIT_URI="RevisitRefersToURI";
-    public static final String EXTRA_REVISIT_DATE="RevisitRefersToDate";
-
+public class CrawlLogIterator implements AutoCloseable, Iterable<CrawlDataItem>, Iterator<CrawlDataItem> {
+    private static final DateTimeFormatter OLD_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").withZone(ZoneOffset.UTC);
     private static final Logger log = LoggerFactory.getLogger(CrawlLogIterator.class);
 
-	/**
-	 * The date format used in crawl.log files.
-	 */
-    protected final SimpleDateFormat crawlDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    protected final SimpleDateFormat oldCrawlDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-
-    /**
-     * The date format specified by the {@link CrawlDataItem} for dates 
-     * entered into it (and eventually into the index)
-     */
-    protected final SimpleDateFormat crawlDataItemFormat = 
-    	new SimpleDateFormat(CrawlDataItem.dateFormat);
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /** 
      * A reader for the crawl.log file being processed
@@ -66,19 +39,26 @@ public class CrawlLogIterator implements AutoCloseable{
      */
     CrawlDataItem next;
 
-    String crawlLog;
-    
-    /** 
+    /**
      * Create a new CrawlLogIterator that reads items from a Heritrix crawl.log
      *
-     * @param crawlLog The path of a Heritrix crawl.log file.
+     * @param path The path of a Heritrix crawl.log file.
      * @throws IOException If errors were found reading the log.
      */
-    public CrawlLogIterator(String crawlLog) 
-            throws IOException {
-    	this.crawlLog = crawlLog;
-        in = new BufferedReader(new InputStreamReader(
-                new FileInputStream(new File(crawlLog))));
+    public CrawlLogIterator(Path path) throws IOException {
+        this(Files.newBufferedReader(path));
+    }
+
+    public CrawlLogIterator(Reader reader) {
+        if (reader instanceof BufferedReader) {
+            in = (BufferedReader) reader;
+        } else {
+            in = new BufferedReader(reader);
+        }
+    }
+
+    public CrawlLogIterator(InputStream stream) {
+        this(new InputStreamReader(stream));
     }
 
     /** 
@@ -86,9 +66,13 @@ public class CrawlLogIterator implements AutoCloseable{
      *
      * @return True if at least one more item can be fetched with next().
      */
-    public boolean hasNext() throws IOException {
+    public boolean hasNext() {
         if(next == null){
-            prepareNext();
+            try {
+                prepareNext();
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
+            }
         }
         return next!=null;
     }
@@ -103,7 +87,7 @@ public class CrawlLogIterator implements AutoCloseable{
      *         item to be returned from the crawl.log.
      * @throws NoSuchElementException If there are no more items 
      */
-    public CrawlDataItem next() throws IOException{
+    public CrawlDataItem next() {
         if(hasNext()){
             CrawlDataItem tmp = next;
             this.next = null;
@@ -140,7 +124,7 @@ public class CrawlLogIterator implements AutoCloseable{
      * @return A {@link CrawlDataItem} if the next line in the crawl log yielded 
      *         a usable item, null otherwise.
      */
-    protected CrawlDataItem parseLine(String line) {
+    protected CrawlDataItem parseLine(String line) throws IOException {
         CrawlDataItem cdi = new CrawlDataItem();
 
         if (line != null && line.length() > 42) {
@@ -156,23 +140,20 @@ public class CrawlLogIterator implements AutoCloseable{
             }
             
             // Index 0: Timestamp 
-            String timestamp;
             try {
-                // Convert from crawl.log format to the format specified by CrawlDataItem
+                // Convert from crawl.log format to Instant
             	if (lineParts[0].contains("T")){
-            		timestamp = crawlDataItemFormat.format(crawlDateFormat.parse(lineParts[0]));
+            	    cdi.setTimestamp(Instant.parse(lineParts[0]));
             	} else {
-            		// Old crawl log date format
-            		timestamp = crawlDataItemFormat.format(oldCrawlDateFormat.parse(lineParts[0]));
+            	    cdi.setTimestamp(Instant.from(OLD_DATE_FORMAT.parse(lineParts[0])));
             	}
-            } catch (ParseException e) {
+            } catch (DateTimeParseException e) {
                 log.error("Error parsing date for: {}", line, e);
                 return null;
             }
-            cdi.setTimestamp(timestamp);
-            
+
             // Index 1: status return code 
-            cdi.setStatusCode(lineParts[1]);
+            cdi.setStatusCode(Integer.parseInt(lineParts[1]));
             
             // Index 2: File size 
             long size = -1;
@@ -193,6 +174,7 @@ public class CrawlLogIterator implements AutoCloseable{
             
             // Index 4: Hop path
             cdi.setHoppath(lineParts[4]);
+            
             // Index 5: Parent URL
             cdi.setParentURL(lineParts[5]);
             
@@ -200,19 +182,31 @@ public class CrawlLogIterator implements AutoCloseable{
             cdi.setMimeType(lineParts[6]);
 
             // Index 7: ToeThread number (ignore)
-            // Index 8: ArcTimeAndDuration (ignore)
+
+            // Index 8: ArcTimeAndDuration
+            String timeAndDuration = lineParts[8];
+            if (!timeAndDuration.equals("-")) {
+                int i = timeAndDuration.indexOf('+');
+                String time = timeAndDuration.substring(0, i);
+                int millis = Integer.parseInt(timeAndDuration.substring(i + 1));
+                cdi.setCaptureBegan(Instant.from(OLD_DATE_FORMAT.parse(time)));
+                cdi.setDuration(Duration.of(millis, ChronoUnit.MILLIS));
+            }
 
             // Index 9: Digest
             String digest = lineParts[9];
             // The digest may contain a prefix. 
             // The prefix will be terminated by a : which is immediately 
             // followed by the actual digest
-            if(digest.lastIndexOf(":") >= 0){
+			if (digest.lastIndexOf(":") >= 0) {
             	digest = digest.substring(digest.lastIndexOf(":")+1);
             }
             cdi.setContentDigest(digest);
             
             // Index 10: Source tag (ignore)
+            if (!lineParts[10].equals("-")) {
+                cdi.setSourceSeedUrl(lineParts[10]);
+            } // else sourceTagSeeds was disabled
             
             // Index 11: Annotations (may be missing)
             boolean revisit = false;
@@ -221,24 +215,9 @@ public class CrawlLogIterator implements AutoCloseable{
         	}
             cdi.setDuplicate(revisit);
             
-            String originalURL = null;
-            String originalTimestamp = null;
-        	String revisitProfile = null;
-            
         	if(revisit && lineParts.length==13){
-// FIXME
-//        		try {
-//	            	JSONObject extraInfo = new JSONObject(lineParts[12]);
-//	            	originalURL = extraInfo.getString(EXTRA_REVISIT_URI);
-//	            	originalTimestamp = extraInfo.getString(EXTRA_REVISIT_DATE);
-//	            	revisitProfile=extraInfo.getString(EXTRA_REVISIT_PROFILE);
-//        		} catch (JSONException e) {
-//        			log.error("Error parsing extra info on line {}", line, e);
-//        		}
-            }
-        	cdi.setOriginalURL(originalURL);
-        	cdi.setOriginalTimestamp(originalTimestamp);
-        	cdi.setRevisitProfile(revisitProfile);
+        	    cdi.setExtraInfo(objectMapper.readTree(lineParts[12]));
+        	}
 
             // Got a valid item.
             cdi.setOriginalCrawlLogLine(line);
@@ -254,4 +233,8 @@ public class CrawlLogIterator implements AutoCloseable{
         in.close();
     }
 
+    @Override
+    public Iterator<CrawlDataItem> iterator() {
+        return this;
+    }
 }

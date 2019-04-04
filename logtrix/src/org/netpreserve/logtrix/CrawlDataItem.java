@@ -22,85 +22,45 @@
  */
 package org.netpreserve.logtrix;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
+import java.time.Duration;
+import java.time.Instant;
+
 /**
  * A base class for individual items of crawl data that should be added to the
  * index.
  * 
- * @author Kristinn Sigur&eth;sson
  */
-public class CrawlDataItem {
-    
+public final class CrawlDataItem {
+    private String URL;
+    private String parentURL;
+    private int statusCode;
+    private String contentDigest;
+    private Instant timestamp;
+    private String hoppath;
+    private String etag;
+    private String mimeType;
+    private String sourceSeedUrl;
+	private boolean duplicate;
+    private long size = -1;
+    private String originalCrawlLogLine;
+    private Instant captureBegan;
+    private Duration duration;
+    private JsonNode extraInfo;
+
     /**
-     * The proper formating of {@link #setURL(String)} and {@link #getURL()}
-     */
-	public static final String dateFormat = "yyyy-MM-dd HH:mm:ss.SSS";
-    
-    protected String URL;
-    protected String parentURL;
-    protected String statusCode;
-    protected String contentDigest;
-    protected String timestamp;
-    protected String hoppath;
-    protected String etag;
-    protected String mimeType;
-    protected String originalURL;
-    protected String originalTimestamp;
-    protected String revisitProfile;
-    protected boolean duplicate;
-    protected long size;
-    protected String originalCrawlLogLine;
-    protected Boolean isProbablyNonDynamic;
-    
-	/**
      * Constructor. Creates a new CrawlDataItem with all its data initialized
      * to null.
      */
-    public CrawlDataItem(){
-        URL = null;
-        contentDigest = null;
-        timestamp = null;
-        etag = null;
-        mimeType = null;
-        duplicate = false;
-        size = -1;
-    }
-	
-	public boolean isProbablyNonDynamic() {
-		if (isProbablyNonDynamic!=null) {
-			return isProbablyNonDynamic;
-		}
-		
-		if (getSize()==0
-				|| getMimeType().equals("text/html")
-				|| getMimeType().equals("unknown")
-				|| getMimeType().equals("text/calendar")
-				|| getMimeType().equals("text/xml")
-				|| getMimeType().equals("application/rss+xml")
-				|| getMimeType().equals("application/atom+xml")
-				|| getMimeType().equals("application/json")
-				|| getStatusCode().equals("-5000")
-				|| getURL().matches("^.*captcha.*$")
-				|| getURL().matches("^.*lightbox.js.*$")
-				|| getURL().matches("^.*image.php?target=image_verification.*$")
-				) {
-			isProbablyNonDynamic = false;
-			return false;
-		}
-		
-		isProbablyNonDynamic = true;
-		return true;
-	}
-
-
-    public static String getDateFormat() {
-        return dateFormat;
+    CrawlDataItem() {
     }
 
     public String getURL() {
         return URL;
     }
 
-    public void setURL(String URL) {
+    void setURL(String URL) {
         this.URL = URL;
     }
 
@@ -108,15 +68,15 @@ public class CrawlDataItem {
         return parentURL;
     }
 
-    public void setParentURL(String parentURL) {
+    void setParentURL(String parentURL) {
         this.parentURL = parentURL;
     }
 
-    public String getStatusCode() {
+    public int getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
 
@@ -124,15 +84,15 @@ public class CrawlDataItem {
         return contentDigest;
     }
 
-    public void setContentDigest(String contentDigest) {
+    void setContentDigest(String contentDigest) {
         this.contentDigest = contentDigest;
     }
 
-    public String getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -140,7 +100,7 @@ public class CrawlDataItem {
         return hoppath;
     }
 
-    public void setHoppath(String hoppath) {
+    void setHoppath(String hoppath) {
         this.hoppath = hoppath;
     }
 
@@ -148,7 +108,7 @@ public class CrawlDataItem {
         return etag;
     }
 
-    public void setEtag(String etag) {
+    void setEtag(String etag) {
         this.etag = etag;
     }
 
@@ -156,39 +116,15 @@ public class CrawlDataItem {
         return mimeType;
     }
 
-    public void setMimeType(String mimeType) {
+    void setMimeType(String mimeType) {
         this.mimeType = mimeType;
-    }
-
-    public String getOriginalURL() {
-        return originalURL;
-    }
-
-    public void setOriginalURL(String originalURL) {
-        this.originalURL = originalURL;
-    }
-
-    public String getOriginalTimestamp() {
-        return originalTimestamp;
-    }
-
-    public void setOriginalTimestamp(String originalTimestamp) {
-        this.originalTimestamp = originalTimestamp;
-    }
-
-    public String getRevisitProfile() {
-        return revisitProfile;
-    }
-
-    public void setRevisitProfile(String revisitProfile) {
-        this.revisitProfile = revisitProfile;
     }
 
     public boolean isDuplicate() {
         return duplicate;
     }
 
-    public void setDuplicate(boolean duplicate) {
+    void setDuplicate(boolean duplicate) {
         this.duplicate = duplicate;
     }
 
@@ -196,7 +132,7 @@ public class CrawlDataItem {
         return size;
     }
 
-    public void setSize(long size) {
+    void setSize(long size) {
         this.size = size;
     }
 
@@ -204,7 +140,50 @@ public class CrawlDataItem {
         return originalCrawlLogLine;
     }
 
-    public void setOriginalCrawlLogLine(String originalCrawlLogLine) {
+    void setOriginalCrawlLogLine(String originalCrawlLogLine) {
         this.originalCrawlLogLine = originalCrawlLogLine;
     }
+
+    void setExtraInfo(JsonNode extraInfo) {
+        this.extraInfo = extraInfo;
+    }
+
+    public JsonNode getExtraInfo() {
+        return extraInfo;
+    }
+
+    public Instant getCaptureBegan() {
+        return captureBegan;
+    }
+
+    void setCaptureBegan(Instant captureBegan) {
+        this.captureBegan = captureBegan;
+    }
+
+    public Duration getCaptureDuration() {
+        return duration;
+    }
+
+	Duration getDuration() {
+		return duration;
+	}
+
+	void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+    
+	/**
+	 * Returns the URL of the seed that the current URL can be traced back to. Is only
+	 * available if the sourceTagSeeds configuration option was enabled at crawl time.
+	 * Otherwise this will be null.
+	 * 
+	 * @return
+	 */
+    String getSourceSeedUrl() {
+		return sourceSeedUrl;
+	}
+
+	void setSourceSeedUrl(String sourceSeedUrl) {
+		this.sourceSeedUrl = sourceSeedUrl;
+	}
 }
