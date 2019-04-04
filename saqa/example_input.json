@@ -15,6 +15,6 @@
        "url": "https://www.tournai.be/actualites/prix-de-la-litterature-francaise-appel-a-candidatures.html",
        "additional_arguments": {"local_path": "/home/manu/projets/promise/explorations/screenshots_qc", "archived": true }
     },
-    "comparison_modules": ["ssim", "mse", "sad"]
+    "comparison_modules": ["ssim", "mse", "sad", "phash"]
   }
 ]
