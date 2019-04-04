@@ -25,8 +25,7 @@ with open('target-qa-dataset.csv', 'w') as csvfile:
                     urls.append(url['url'])
             flags = []
             for f in t['flags']:
-                if f['name'].startswith('QA'):
-                  flags.append(f['name'])
+                flags.append(f['name'])
             qac = 'QA Issue - Content' in flags
             qaa = 'QA Issue - Appearence' in flags
             qaf = 'QA Issue - Functionality' in flags
