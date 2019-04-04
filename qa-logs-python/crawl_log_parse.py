@@ -1,19 +1,28 @@
 import argparse
+import json
 import os
 import re
 import sys
-import json
-import boto3
-import pyspark
 from glob import glob
+
 from pyspark.sql.types import *
+from pyspark.sql import SparkSession
 
 
 def validate_args(args):
     return True
 
 
-def split_crawl_entry(row):
+def normalize_crawl_entry(row):
+    """Produce a row with 13 fields.
+
+    Some crawl logs have lines of varied length. They may not have the
+    annotation nor JSON fields. It may not be good to assume there
+    should be exactly 13 fields or that the 13th is JSON? If we don't
+    need the fields past a certain number, we can do away with some
+    of the logic here...Anyway, currently this currently assumes we
+    want all rows to have 13 fields.
+    """
     # replace all multiple whitespace instances
     # in order to more accurately split on 
     # whitespace delimiter
@@ -35,8 +44,8 @@ def split_crawl_entry(row):
     else:
         # splitting the row at the space before the json blob
         # and piecing them back together with the whole row
-        row = row[:-1] + ["-", row[-1][row[-1].index("{") - 1:]]
-    
+        row = row[:-1] + ["-", row[-1][row[-1].index("{"):]]
+
     return row
 
 
@@ -50,16 +59,17 @@ def fetch_har_entry_pairs(har_file):
                 yield (e['request']['url'], e['response']['redirectURL'], e['response']['status'])
 
 def run(args):
+    spark = SparkSession.builder.appName("CrawlLogs" ).getOrCreate()
     validate_args(args)
-    sqlc = SQLContext(sc)
 
     if args.job == "parse-crawl":
-        run_parse_crawl_job(sc, sqlc, args)
+        run_parse_crawl_job(spark, args)
+    spark.stop()
 
 
-def run_parse_crawl_job(sc, sqlc, args):
+def run_parse_crawl_job(spark, args):
     schema = StructType.fromJson({'fields': [
-        {'metadata': {},'name': 'timetsmp', 'nullable': False, 'type': 'string'},
+        {'metadata': {},'name': 'timestamp', 'nullable': False, 'type': 'string'},
         {'metadata': {},'name': 'fetch_code', 'nullable': False, 'type': 'string'},
         {'metadata': {},'name': 'document_size', 'nullable': False, 'type': 'string'},
         {'metadata': {},'name': 'downloaded_url', 'nullable': False, 'type': 'string'},
@@ -74,14 +84,18 @@ def run_parse_crawl_job(sc, sqlc, args):
         {'metadata': {},'name': 'json_info', 'nullable': False, 'type': 'string'}
     ], 'type': 'struct'})
 
+    sc = spark.sparkContext
     input_data = sc.textFile(args.crawl_log)
-    output_data = input_data.map(split_crawl_entry)
-    df = sqlc.createDataFrame(output_data, schema)
+    output_data = input_data.map(normalize_crawl_entry)
+    df = spark.createDataFrame(output_data, schema)
+    df.createOrReplaceTempView("logs")
+    results = spark.sql("SELECT downloaded_url FROM logs")
+    results.show()
 
-    df.coalsce()\
-        .write()\
-        .format("parquet") \
-        .saveAsTable(args.output_dir)
+#    df.coalesce()\
+#        .write()\
+#        .format("parquet") \
+#        .saveAsTable(args.output_dir)
 
 
 if __name__ == "__main__":
@@ -112,3 +126,5 @@ if __name__ == "__main__":
         dest="output_dir",
         help="Directory to save output to; cannot exist."
     )
+    args = parser.parse_args()
+    run(args)
