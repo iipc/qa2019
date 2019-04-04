@@ -8,6 +8,6 @@ as an example:
 
 `local_file.py`
 ```
-fetch(url):
+fetch(url, **kwargs):
    return open(url, 'r')
 ```
