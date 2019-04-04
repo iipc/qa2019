@@ -6,9 +6,9 @@ import imutils
 import cv2
 from ..toolbox import cropping_images
 
-def compare(original_fname, archived_fname):
-    original = cv2.imread(original_fname)
-    archived = cv2.imread(archived_fname)
+def compare(original_fh, archived_fh):
+    original = cv2.imread(original_fh.name)
+    archived = cv2.imread(archived_fh.name)
 
     if original is not None and archived is not None:
         original_cropped, archived_cropped = cropping_images(original, archived)

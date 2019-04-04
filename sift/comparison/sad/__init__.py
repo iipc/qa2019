@@ -7,7 +7,7 @@ from ..toolbox import cropping_images
 from PIL import Image
 
 
-def compare(original_fname, archived_fname):
+def compare(original_fh, archived_fh):
     # source: https://rosettacode.org/wiki/Percentage_difference_between_images#Python
     """Calculates the vector difference score of the two given images
 
@@ -28,8 +28,8 @@ def compare(original_fname, archived_fname):
     .. [1] https://rosettacode.org/wiki/Percentage_difference_between_images#Python
 
     """
-    current_image = io.imread(original_fname)
-    archive_image = io.imread(archived_fname)
+    current_image = io.imread(original_fh.name)
+    archive_image = io.imread(archived_fh.name)
     (current_image_cropped, archive_image_cropped) = cropping_images(current_image, archive_image)
     current_image = cv2.cvtColor(current_image_cropped, cv2.COLOR_BGR2RGB)
     current_image = Image.fromarray(current_image)
