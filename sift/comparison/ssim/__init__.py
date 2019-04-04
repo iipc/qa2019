@@ -1,3 +1,6 @@
+"""Structural Similarity (SSIM)
+Computing the structural similarity of the images."""
+
 from skimage.measure import compare_ssim
 import imutils
 import cv2
@@ -13,4 +16,4 @@ def compare(original_fname, archived_fname):
         archived_gray = cv2.cvtColor(archived_cropped, cv2.COLOR_BGR2GRAY)
 
         (score, diff) = compare_ssim(original_gray, archived_gray, full=True)
-    return score
+    return (score, None)
