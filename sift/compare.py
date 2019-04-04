@@ -18,7 +18,7 @@ parser.add_argument('-o', '--output-file', dest='output_file',
 
 args = parser.parse_args()
 
-input_json = json.load(args.input_file if args.input_file else sys.stdin)
+input_json = json.load(open(args.input_file, 'r')) if args.input_file else sys.stdin
 
 output = []
 
