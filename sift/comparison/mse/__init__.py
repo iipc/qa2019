@@ -1,7 +1,7 @@
 """Mean Squared Error
 Computing the mean squared error of the images."""
 
-import skimage as io
+from skimage import io
 import numpy as np
 from sift.comparison.toolbox import cropping_images
 
