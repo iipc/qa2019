@@ -1,3 +1,6 @@
+"""Mean Squared Error
+Computing the mean squared error of the images."""
+
 import skimage as io
 import numpy as np
 from sift.comparison.toolbox import cropping_images
@@ -31,4 +34,4 @@ def compare(original_fname, archived_fname):
     mse_noise = np.sum((current_image_cropped.astype("float") - archive_image_cropped.astype("float")) ** 2)
     mse_noise /= float(current_image_cropped.shape[0] * current_image_cropped.shape[1])
 
-    return mse_noise
+    return (mse_noise, None)
