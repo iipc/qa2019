@@ -47,6 +47,7 @@ for entry in input_json:
         comparison_result['short_name'] = comparison_item
         comparison_result['name'] = comparison_module.__doc__.split("\n")[0]
         comparison_result['score'], comparison_result['metadata'] = comparison_module.compare(original_file, archived_file)
+        comparison_results.append(comparison_result)
     output_dict = { 
             'id': entry.get('id'),
             'metadata': entry.get('metadata'),
@@ -54,4 +55,4 @@ for entry in input_json:
             }
     output.append(output_dict)
 
-json.dump(output, args.output_file if args.output_file else sys.stdout)
+json.dump(output, open(args.output_file, 'w+') if args.output_file else sys.stdout)
