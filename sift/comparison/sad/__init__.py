@@ -3,7 +3,7 @@ Computing the sum of absolute difference of the images."""
 
 from skimage import io
 import cv2
-from sift.comparison.toolbox import cropping_images
+from ..toolbox import cropping_images
 from PIL import Image
 
 

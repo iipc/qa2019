@@ -3,7 +3,7 @@ Computing the mean squared error of the images."""
 
 from skimage import io
 import numpy as np
-from sift.comparison.toolbox import cropping_images
+from ..toolbox import cropping_images
 
 
 def compare(original_fname, archived_fname):

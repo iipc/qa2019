@@ -4,7 +4,7 @@ Computing the structural similarity of the images."""
 from skimage.measure import compare_ssim
 import imutils
 import cv2
-from sift.comparison.toolbox import cropping_images
+from ..toolbox import cropping_images
 
 def compare(original_fname, archived_fname):
     original = cv2.imread(original_fname)
