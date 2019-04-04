@@ -1,0 +1,7 @@
+Job,Crawldate,URLs,Bytes,Domain or page concerned,Detected problem
+1a,14/11/2018,1 855,98 603 136,atlantico.fr,good crawl with max-hops=2
+1b,15/11/2018,133,9 150 887,atlantico.fr,bad crawl because of an additional redirect
+2a,10/05/2018,422,12 987 414,http://www.latribune.fr/edition-quotidienne/liste-des-editions-quotidiennes.html,daily crawl of ressources linked in liste-des-editions-quotidiennes.html by the same date
+2b,11/05/2018,212,4 978 071,http://www.latribune.fr/edition-quotidienne/liste-des-editions-quotidiennes.html,no update of liste-des-editions-quotidiennes.html - so much less data that day
+3a,05/09/2018,6 079,905 737 943,cajaimebien.com,good crawl
+3b,09/10/2018,2 295,298 202 148,cajaimebien.com,interrupted crawl
