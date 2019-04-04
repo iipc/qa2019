@@ -7,3 +7,5 @@ Werkzeug==0.15.2
 scikit_image==0.14.2
 opencv_python==4.0.0.21
 imutils==0.5.2
+pyppeteer==0.0.25
+PyYAML==5.1
