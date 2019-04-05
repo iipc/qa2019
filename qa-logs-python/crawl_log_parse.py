@@ -79,9 +79,9 @@ def run(args):
     spark = SparkSession.builder.appName("CrawlLogs" ).getOrCreate()
     validate_args(args)
 
-    if args.job == "parse-crawl":
+    if args.job in ["parse-crawl", "all"]:
         run_parse_crawl_job(spark, args)
-    if args.job == "add-har":
+    if args.job in ["add-har", "all"]:
         print(run_add_har(spark, args))
     spark.stop()
 
