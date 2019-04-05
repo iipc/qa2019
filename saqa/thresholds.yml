@@ -7,6 +7,6 @@ mse:
   reject: 3000.0
   bias: negative
 sad:
-  accept: 0.95
-  reject: 0.9
+  accept: 95
+  reject: 90
   bias: positive
