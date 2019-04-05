@@ -40,6 +40,7 @@ settings = {
     'ssim': {'accept': 0.95, 'reject': 0.9, 'bias': 'positive' },
     'sad': {'accept': 95, 'reject': 90, 'bias': 'positive' },
     'mse': {'accept': 1000, 'reject': 3000, 'bias': 'negative' },
+    'phash': {'accept': 0.95, 'reject': 0.9, 'bias': 'positive'}
 }
 settings.update(conf)
 
