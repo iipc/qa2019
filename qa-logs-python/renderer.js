@@ -8,9 +8,9 @@ const PuppeteerHar = require('./puppeteer-har');
 const devices = require('puppeteer/DeviceDescriptors');
 const fs = require('fs');
 const { promisify } = require('util');
-const urllib = require('url');
+const crypto = require('crypto');
 
-const url = process.argv[2];
+const seed = process.argv[2];
 
 process.on('unhandledRejection', error => {
   // Will print "unhandledRejection err is not defined"
@@ -69,9 +69,9 @@ process.on('unhandledRejection', error => {
 
   // Go the the page to capture:
   // See https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options for definitions of networkidle0/2
-  console.log("Navigating to " + url);
+  console.log("Navigating to " + seed);
   try {
-    await page.goto(url, { waitUntil: 'networkidle2' }); // Longer timeout set above
+    await page.goto(seed, { waitUntil: 'networkidle2' }); // Longer timeout set above
 
     // Switch to different user agent settings to attempt to ensure additional media downloaded:
     console.log("Switching device settings...");
@@ -181,14 +181,16 @@ process.on('unhandledRejection', error => {
   //             }];
 
   // Write out the extended HAR:
-  var urlDomain;
-  var currentURL = page.url();
-  if (currentURL.match(/\/\d{14}\//)) {
-    urlDomain = urllib.parse(currentURL.split(currentURL.match(/\/\d{14}\//)[0])[1]).hostname
-  } else {
-    urlDomain = urllib.parse(currentURL).hostname
+  let timestamp;
+  for (const header of har_extended.log.entries[0].response.headers) {
+    if (header["name"] === "Memento-Datetime") {
+      timestamp = header["value"]
+      break
+    }
   }
-  await promisify(fs.writeFile)('/output/' + urlDomain + '_rendered.har', JSON.stringify(har_extended));
+  timestamp = new Date(timestamp).toISOString()
+  let hash = crypto.createHash('md5').update(seed).update(timestamp).digest('hex')
+  await promisify(fs.writeFile)('/output/' + hash + '.har', JSON.stringify(har_extended));
 
   // Shut down:
   await browser.close();
