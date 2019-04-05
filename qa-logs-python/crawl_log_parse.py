@@ -26,8 +26,7 @@ def normalize_crawl_entry(row):
     # replace all multiple whitespace instances
     # in order to more accurately split on 
     # whitespace delimiter
-    row = re.sub(" +", " ", row)
-
+    row = re.sub(" +", " ", row.strip())
     # if row has 11 fields,
     # return list plus two "-"
     # to account for missing annotations
@@ -35,7 +34,7 @@ def normalize_crawl_entry(row):
     if row.count(" ") == 10:
         return row.split() + ["-", "-"]
     
-    # if we're here, then row has addtional fields
+    # if we're here, then row has additional fields
     row = row.split(" ", 11)
 
     # check for json blob
@@ -44,8 +43,7 @@ def normalize_crawl_entry(row):
     else:
         # splitting the row at the space before the json blob
         # and piecing them back together with the whole row
-        row = row[:-1] + [row[-1][:row[-1].index("{")], row[-1][row[-1].index("{"):]]
-
+        row = row[:-1] + [row[-1][:row[-1].index("{") - 1], row[-1][row[-1].index("{"):]]
     return row
 
 
@@ -92,10 +90,7 @@ def run_parse_crawl_job(spark, args):
     results = spark.sql("SELECT downloaded_url FROM logs")
     results.show()
 
-#    df.coalesce()\
-#        .write()\
-#        .format("parquet") \
-#        .saveAsTable(args.output_dir)
+    df.coalesce(10).write.format("parquet").saveAsTable(args.output_dir)
 
 
 if __name__ == "__main__":
