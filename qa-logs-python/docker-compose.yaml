@@ -11,13 +11,6 @@ services:
       - ./webarchive:/webarchive
     networks:
       - pywb-puppet
-  
-  puppeteer:
-    image: ukwa/webrender-puppeteer
-    container_name: puppeteer
-    volumes:
-      - ./puppeteer-har.js:/puppeteer-har.js
-      - ./renderer.js:/renderer.js
 
 networks:
   pywb-puppet:
