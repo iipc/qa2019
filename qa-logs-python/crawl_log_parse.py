@@ -50,7 +50,7 @@ def normalize_crawl_entry(row):
     return row
 
 
-def fetch_har_entry_pairs(har_file, args=None):
+def fetch_har_entry_pairs(har_file, no_proxy=False):
     for g in glob(har_file):
         with open(g, 'r') as f:
             har = json.loads(f.read())
@@ -61,7 +61,7 @@ def fetch_har_entry_pairs(har_file, args=None):
                 #yield (e['request']['url'], e['response']['redirectURL'], e['response']['status'])
                 #yield {
                 url = e['request']['url']
-                if args is not None and args.no_proxy:
+                if no_proxy:
                     url = extract_archived_url(url)
                     if url is None:
                         continue
@@ -80,13 +80,13 @@ def run(args):
     validate_args(args)
 
     if args.job in ["parse-crawl", "all"]:
-        run_parse_crawl_job(spark, args)
+        run_parse_crawl_job(spark, args.crawl_log, args.output_dir)
     if args.job in ["add-har", "all"]:
-        print(run_add_har(spark, args))
+        print(run_add_har(spark, args.parquet_file, args.har_file, args.no_proxy))
     spark.stop()
 
 
-def run_parse_crawl_job(spark, args):
+def run_parse_crawl_job(spark, crawl_log, output_dir='parquet'):
     schema = StructType.fromJson({'fields': [
         {'metadata': {},'name': 'timestamp', 'nullable': False, 'type': 'string'},
         {'metadata': {},'name': 'fetch_code', 'nullable': False, 'type': 'string'},
@@ -104,12 +104,12 @@ def run_parse_crawl_job(spark, args):
     ], 'type': 'struct'})
 
     sc = spark.sparkContext
-    input_data = sc.textFile(args.crawl_log)
+    input_data = sc.textFile(crawl_log)
     output_data = input_data.map(normalize_crawl_entry)
     df = spark.createDataFrame(output_data, schema)
     df.createOrReplaceTempView("logs")
 
-    df.coalesce(10).write.format("parquet").saveAsTable(args.output_dir)
+    df.coalesce(10).write.format("parquet").saveAsTable(output_dir)
 
 
 def extract_archived_url(url):
@@ -124,13 +124,13 @@ def extract_archived_url(url):
     return url
 
 
-def run_add_har(spark, args):
+def run_add_har(spark, parquet_file, har_file, no_proxy=False):
     sc = spark.sparkContext
     sql_context = SQLContext(sc)
-    df = sql_context.read.parquet(args.parquet_file)
+    df = sql_context.read.parquet(parquet_file)
     df.createOrReplaceTempView("logs")
 
-    data = fetch_har_entry_pairs(args.har_file, args)
+    data = fetch_har_entry_pairs(har_file, no_proxy)
     urls = [x.get('url') for x in data]
     urls = set(urls)
     results = df[df.downloaded_url.isin(urls)].collect()
