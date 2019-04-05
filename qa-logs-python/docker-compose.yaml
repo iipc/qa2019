@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  pywb:
+    image: webrecorder/pywb
+    container_name: pywb
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./webarchive:/webarchive
+    networks:
+      - pywb-puppet
+  
+  puppeteer:
+    image: ukwa/webrender-puppeteer
+    container_name: puppeteer
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - ./puppeteer-har.js:/puppeteer-har.js
+      - ./renderer.js:/renderer.js
+    networks:
+      - pywb-puppet
+
+networks:
+  pywb-puppet:
+    driver: bridge
