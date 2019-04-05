@@ -11,6 +11,12 @@ const { promisify } = require('util');
 const crypto = require('crypto');
 
 const input = process.argv[2];
+var jobType = "standard";
+if (process.argv.length > 3) {
+  if (process.argv[3] === "extended") {
+    jobType = process.argv[3]
+  }
+}
 
 // TODO: add blocking to process one at a time?
 // or is async fine?
@@ -132,83 +138,105 @@ async function getHAR(seed) {
   urls.url = await page.url();
   // Also get hold of the transcluded resources that make up the page:
   // (this works like capturing page.on('response') events but excludes the URL of the page itself.)
-  // urls.E = await page.evaluate(() => (
-  //   performance.getEntries()
-  //     .filter(e => e.entryType === 'resource')
-  //     .map(e => e.name)
-  // ));
-  // Get hold of the navigation links:
-  // urls.L = await page.$$eval('a', as => as.map(a => a.href));
-  // urls.L = [...new Set(urls.L)];
-
-  // Get the location of clickable <a> elements:
-  // urls.map = await page.evaluate(() => {
-  //   const clickables = [];
-  //   const elements = Array.prototype.slice.call(document.getElementsByTagName('*'));
-  //   elements.forEach((element) => {
-  //     if (element.offsetParent != null) {
-  //       if (element.onclick != null || element.href !== undefined) {
-  //         const c = {};
-  //         const {
-  //           x, y, width, height,
-  //         } = element.getBoundingClientRect();
-  //         c.location = {
-  //           left: x, top: y, width, height,
-  //         };
-  //         if (element.attributes.href !== undefined) {
-  //           // Get absolute URL:
-  //           c.href = element.href;
-  //         }
-  //         if (element.onclick != null) {
-  //           c.onclick = element.onclick.toString();
-  //         }
-  //         clickables.push(c);
-  //       }
-  //     }
-  //   });
-  //   return clickables;
-  // });
-
-  // Write out a link summary:
-  // await promisify(fs.writeFile)('/output/rendered.urls.json', JSON.stringify(urls));
 
   // Assemble the HAR:
   const har_standard = await har.stop();
-  var har_extended = har_standard;
-  har_extended['log']['pages'][0]['url'] = await page.url();
-  har_extended['log']['pages'][0]['urls'] = urls;
-  // har_extended['log']['pages'][0]['map'] = urls.map;
-  // const b64_content = Buffer.from(html).toString('base64');
-  // har_extended['log']['pages'][0]['renderedContent'] = { 
-  //   text: b64_content, 
-  //   encoding: "base64"
-  // };
-  // const b64_image = Buffer.from(image).toString('base64');
-  // const b64_pdf = Buffer.from(pdf).toString('base64');
-  // har_extended['log']['pages'][0]['renderedElements'] = [{
-  //               selector: ":root",
-  //               format: "PNG",
-  //               content: b64_image,
-  //               encoding: "base64"
-  //             },{
-  //               selector: ":root",
-  //               format: "PDF",
-  //               content: b64_pdf,
-  //               encoding: "base64"
-  //             }];
 
   // Write out the extended HAR:
   let timestamp;
-  for (const header of har_extended.log.entries[0].response.headers) {
-    if (header["name"] === "Memento-Datetime") {
-      timestamp = header["value"]
+  for (const entry of har_standard.log.entries) {
+    for (const header of entry.response.headers) {
+      if (header["name"] === "Memento-Datetime") {
+        timestamp = header["value"]
+        break
+      }
+    }
+    if (timestamp) {
       break
     }
   }
   timestamp = new Date(timestamp).toISOString()
   let hash = crypto.createHash('md5').update(seed).update(timestamp).digest('hex');
-  await promisify(fs.writeFile)('/output/' + hash + '.har', JSON.stringify(har_extended));
+  
+  if (jobType === "extended") {
+    await page.screenshot({ path: '/output/' + hash + '.png' });
+    const image = await page.screenshot({ path: '/output/' + hash + '-full.png', fullPage: true });
 
+    // Print to PDF but use the screen CSS:
+    await page.emulateMedia('screen');
+    const pdf = await page.pdf({
+      path: '/output/' + hash + '-page.pdf',
+      format: 'A4',
+      scale: 0.75,
+      printBackground: true
+    });
+    const html = await page.content();
+    await promisify(fs.writeFile)('/output/' + hash + '.html', html);
+    urls.E = await page.evaluate(() => (
+      performance.getEntries()
+        .filter(e => e.entryType === 'resource')
+        .map(e => e.name)
+    ));
+    // Get hold of the navigation links:
+    urls.L = await page.$$eval('a', as => as.map(a => a.href));
+    urls.L = [...new Set(urls.L)];
+
+    // Get the location of clickable <a> elements:
+    urls.map = await page.evaluate(() => {
+      const clickables = [];
+      const elements = Array.prototype.slice.call(document.getElementsByTagName('*'));
+      elements.forEach((element) => {
+        if (element.offsetParent != null) {
+          if (element.onclick != null || element.href !== undefined) {
+            const c = {};
+            const {
+              x, y, width, height,
+            } = element.getBoundingClientRect();
+            c.location = {
+              left: x, top: y, width, height,
+            };
+            if (element.attributes.href !== undefined) {
+              // Get absolute URL:
+              c.href = element.href;
+            }
+            if (element.onclick != null) {
+              c.onclick = element.onclick.toString();
+            }
+            clickables.push(c);
+          }
+        }
+      });
+      return clickables;
+    });
+    // Write out a link summary:
+    await promisify(fs.writeFile)('/output/' + hash + '.urls.json', JSON.stringify(urls));
+
+    var har_extended = har_standard;
+    har_extended['log']['pages'][0]['url'] = await page.url();
+    har_extended['log']['pages'][0]['urls'] = urls;
+    har_extended['log']['pages'][0]['map'] = urls.map;
+    const b64_content = Buffer.from(html).toString('base64');
+    har_extended['log']['pages'][0]['renderedContent'] = { 
+      text: b64_content, 
+      encoding: "base64"
+    };
+    const b64_image = Buffer.from(image).toString('base64');
+    const b64_pdf = Buffer.from(pdf).toString('base64');
+    har_extended['log']['pages'][0]['renderedElements'] = [{
+                  selector: ":root",
+                  format: "PNG",
+                  content: b64_image,
+                  encoding: "base64"
+                },{
+                  selector: ":root",
+                  format: "PDF",
+                  content: b64_pdf,
+                  encoding: "base64"
+                }];
+    await promisify(fs.writeFile)('/output/' + hash + '.har', JSON.stringify(har_extended));
+  } else {
+    await promisify(fs.writeFile)('/output/' + hash + '.har', JSON.stringify(har_standard));
+  }
   // Shut down:
   await browser.close();
 }
