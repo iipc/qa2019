@@ -10,3 +10,11 @@ sad:
   accept: 95
   reject: 90
   bias: positive
+phash:
+  accept: 100
+  reject: 80
+  bias: positive
+jaccard:
+  accept: 0.9
+  reject: 0.8
+  bias: positive

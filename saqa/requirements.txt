@@ -9,3 +9,8 @@ opencv_python==4.0.0.21
 imutils==0.5.2
 pyppeteer==0.0.25
 PyYAML==5.1
+waitress==1.2.1
+beautifulsoup4==4.7.1
+jaccard-index==0.0.3
+requests==2.21.0
+
