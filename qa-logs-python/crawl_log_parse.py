@@ -6,7 +6,10 @@ import sys
 from glob import glob
 
 from pyspark.sql.types import *
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession, SQLContext, functions as F
+
+
+URL_EXTRACTOR = re.compile(r'(?:.*)/\d{14,}(?:[a-zA-Z]*_)?/(.*)$')
 
 
 def validate_args(args):
@@ -47,14 +50,30 @@ def normalize_crawl_entry(row):
     return row
 
 
-def fetch_har_entry_pairs(har_file):
+def fetch_har_entry_pairs(har_file, args=None):
     for g in glob(har_file):
         with open(g, 'r') as f:
             har = json.loads(f.read())
+            entries = []
             for e in har['log']['entries']:
                 # this could be appended to a list and we return that instead.
                 # not yet clear on how we want to handle this.
-                yield (e['request']['url'], e['response']['redirectURL'], e['response']['status'])
+                #yield (e['request']['url'], e['response']['redirectURL'], e['response']['status'])
+                #yield {
+                url = e['request']['url']
+                if args is not None and args.no_proxy:
+                    url = extract_archived_url(url)
+                    if url is None:
+                        continue
+                entries.append({
+                    'url': url,
+                    'status': e['response']['status'],
+                    'mime_type': e['response']['content']['mimeType'],
+                    'size': e['response']['content']['size'],
+                })
+    return entries
+
+
 
 def run(args):
     spark = SparkSession.builder.appName("CrawlLogs" ).getOrCreate()
@@ -62,6 +81,8 @@ def run(args):
 
     if args.job == "parse-crawl":
         run_parse_crawl_job(spark, args)
+    if args.job == "add-har":
+        print(run_add_har(spark, args))
     spark.stop()
 
 
@@ -87,10 +108,47 @@ def run_parse_crawl_job(spark, args):
     output_data = input_data.map(normalize_crawl_entry)
     df = spark.createDataFrame(output_data, schema)
     df.createOrReplaceTempView("logs")
-    results = spark.sql("SELECT downloaded_url FROM logs")
-    results.show()
 
     df.coalesce(10).write.format("parquet").saveAsTable(args.output_dir)
+
+
+def extract_archived_url(url):
+    """Remove playback app portion of URL for non-proxy replay"""
+    match = URL_EXTRACTOR.match(url)
+    if match:
+        url = match.group(1)
+    else:
+        # there was no timestamp;
+        # assume url is playback app's own asset etc. and skip
+        return None
+    return url
+
+
+def run_add_har(spark, args):
+    sc = spark.sparkContext
+    sql_context = SQLContext(sc)
+    df = sql_context.read.parquet(args.parquet_file)
+    df.createOrReplaceTempView("logs")
+
+    data = fetch_har_entry_pairs(args.har_file, args)
+    urls = [x.get('url') for x in data]
+    urls = set(urls)
+    results = df[df.downloaded_url.isin(urls)].collect()
+    # convert results to a dictionary for url lookup
+    log_data = {}
+    for row in results:
+        # combine data base on dowloaded url; retain only some fields
+        log_data.setdefault(row.downloaded_url, []).append({
+            "timestamp": row.fetch_timestamp,
+            "referrer": row.referrer,
+            "status": row.fetch_code,
+            "size": row.document_size,
+            "mime_type": row.mime_type,
+        })
+    for dicts in data:
+        # add in the crawl log data for the har entry
+        dicts["log_data"] = log_data.get(dicts["url"])
+    return json.dumps(data)
 
 
 if __name__ == "__main__":
@@ -121,5 +179,12 @@ if __name__ == "__main__":
         dest="output_dir",
         help="Directory to save output to; cannot exist."
     )
+    parser.add_argument(
+        "--no-proxy-mode",
+        dest="no_proxy",
+        action='store_true',
+        help="Non proxy mode indicates archived URL should be extracted from replay URL."
+    )
+
     args = parser.parse_args()
     run(args)
