@@ -10,7 +10,24 @@ const fs = require('fs');
 const { promisify } = require('util');
 const crypto = require('crypto');
 
-const seed = process.argv[2];
+const input = process.argv[2];
+
+// TODO: add blocking to process one at a time?
+// or is async fine?
+fs.readFile(input, function(err, seeds) {
+  // assuming error is because it's a single url for now
+  if(err) {
+    console.log(err)
+    getHAR(input);
+  } else {
+    var seedList = seeds.toString().split("\n");
+    for(i in seedList) {
+      if (seedList[i]) {
+        getHAR(seedList[i]);
+      }
+    }
+  }
+});
 
 process.on('unhandledRejection', error => {
   // Will print "unhandledRejection err is not defined"
@@ -18,7 +35,7 @@ process.on('unhandledRejection', error => {
   process.exit(1);
 });
 
-(async () => {
+async function getHAR(seed) {
 
   // Set up the browser in the required configuration:
   const browserArgs = {
@@ -189,13 +206,12 @@ process.on('unhandledRejection', error => {
     }
   }
   timestamp = new Date(timestamp).toISOString()
-  let hash = crypto.createHash('md5').update(seed).update(timestamp).digest('hex')
+  let hash = crypto.createHash('md5').update(seed).update(timestamp).digest('hex');
   await promisify(fs.writeFile)('/output/' + hash + '.har', JSON.stringify(har_extended));
 
   // Shut down:
   await browser.close();
-})();
-
+}
 
 async function autoScroll(page){
     await page.evaluate(async () => {
