@@ -15,13 +15,9 @@ services:
   puppeteer:
     image: ukwa/webrender-puppeteer
     container_name: puppeteer
-    # ports:
-    #   - "8080:8080"
     volumes:
       - ./puppeteer-har.js:/puppeteer-har.js
       - ./renderer.js:/renderer.js
-    networks:
-      - pywb-puppet
 
 networks:
   pywb-puppet:
