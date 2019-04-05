@@ -3,6 +3,7 @@ Computing the sum of absolute difference of the images."""
 
 from skimage import io
 import cv2
+import os
 from ..toolbox import cropping_images
 from PIL import Image
 
@@ -49,4 +50,8 @@ def compare(original_fh, archived_fh):
 
     vec_score = 100 - ((dif / 255.0 * 100) / ncomponents)  # convert to percentage match
 
-    return (vec_score, None)
+    return (vec_score, {
+        "screenshots_path": os.path.dirname(original_fh.name),
+        "original_screenshot": os.path.basename(original_fh.name),
+        "archived_screenshot": os.path.basename(archived_fh.name)
+    })

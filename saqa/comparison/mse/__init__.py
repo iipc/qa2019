@@ -3,6 +3,7 @@ Computing the mean squared error of the images."""
 
 from skimage import io
 import numpy as np
+import os
 from ..toolbox import cropping_images
 
 
@@ -34,4 +35,8 @@ def compare(original_fh, archived_fh):
     mse_noise = np.sum((current_image_cropped.astype("float") - archive_image_cropped.astype("float")) ** 2)
     mse_noise /= float(current_image_cropped.shape[0] * current_image_cropped.shape[1])
 
-    return (mse_noise, None)
+    return (mse_noise, {
+        "screenshots_path": os.path.dirname(original_fh.name),
+        "original_screenshot": os.path.basename(original_fh.name),
+        "archived_screenshot": os.path.basename(archived_fh.name)
+    })
