@@ -48,15 +48,15 @@ settings.update(conf)
 for entry in input_json:
     logging.info('working on entry with id "%s"', entry.get('id'))
     original = entry.get('original', {})
-    input_module = original.get('input_module')
-    input_module = importlib.import_module('input.{}'.format(input_module))
-    logging.info('imported "%s" to read original version',  input_module)
+    input_module_name = original.get('input_module')
+    input_module = importlib.import_module('input.{}'.format(input_module_name))
+    logging.info('imported "input.%s" to read original version',  input_module_name)
     original_file = input_module.fetch(original.get('url'), **original.get("additional_arguments", {}))
     
     archived = entry.get('archived', {})
-    input_module = archived.get('input_module')
-    input_module = importlib.import_module('input.{}'.format(input_module))
-    logging.info('imported "%s" to read archived version',  input_module)
+    input_module_name = archived.get('input_module')
+    input_module = importlib.import_module('input.{}'.format(input_module_name))
+    logging.info('imported "input.%s" to read archived version',  input_module_name)
     archived_file = input_module.fetch(archived.get('url'), **archived.get("additional_arguments", {}))
 
     comparison_modules = entry.get('comparison_modules')
@@ -64,7 +64,7 @@ for entry in input_json:
     
     for comparison_item in comparison_modules:
         comparison_result = {}
-        logging.info('comparing %s and %s via %s:', original_file, archived_file, comparison_item)
+        logging.info('comparing %s and %s via %s:', original_file.name, archived_file.name, comparison_item)
         comparison_module = "comparison.{}".format(comparison_item)
         comparison_result['module'] = comparison_module
         comparison_module = importlib.import_module(comparison_module)
@@ -86,6 +86,7 @@ for entry in input_json:
             else:
                 comparison_result['decision'] = 'investigate'            
         comparison_results.append(comparison_result)
+        logging.info('comparison complete. Score: %s. Decision: %s', comparison_result['score'], comparison_result['decision'])
     
     output_dict = { 
             'id': entry.get('id'),
