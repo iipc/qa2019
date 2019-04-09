@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "metadata": {
+        "url": "https://www.tournai.be/actualites/prix-de-la-litterature-francaise-appel-a-candidatures.html",
+        "Title": "Prix de la littérature française : appel à candidatures - Actualités - TOURNAI.be"
+    },
+    "original": {
+       "input_module": "sha1",
+       "url": "https://www.tournai.be/actualites/prix-de-la-litterature-francaise-appel-a-candidatures.html",
+       "additional_arguments": {"local_path": "/home/manu/projets/promise/explorations/screenshots_qc", "archived": false }
+    },
+    "archived": {
+       "input_module": "sha1",
+       "url": "https://www.tournai.be/actualites/prix-de-la-litterature-francaise-appel-a-candidatures.html",
+       "additional_arguments": {"local_path": "/home/manu/projets/promise/explorations/screenshots_qc", "archived": true }
+    },
+    "comparison_modules": ["ssim", "mse", "sad", "phash"]
+  }
+]

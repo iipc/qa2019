@@ -1,0 +1,61 @@
+<!doctype html>
+{% set triage_lookup = {'accept': 'success', 'reject': 'alert', 'investigate': 'warning' } %}
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAQA: Result Display</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="large-12 cell">
+          <h2>SAQA: Semi-Automatic Quality Assurance</h2>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="large-12 cell">
+          <div class="callout">
+            <h3>Displaying results from <strong>{{ result_filename }}</strong></h3>
+	    {% for result in results %}
+	      {% set metadata = result['metadata'] %}
+	      {% set comparison_results = result['comparison_results'] %}
+	      <div class='callout secondary'>
+	        <h5>{{ result['id'] }}: <a href='{{metadata['url']}}'>{{ metadata['Title'] if metadata['Title'] else metadata['url'] }}</a></h5>
+	        {% for comparison_result in comparison_results %}
+	        <div class='callout secondary {{ triage_lookup[comparison_result['decision']] }}'>
+		  <strong>{{ comparison_result.name }}</strong>
+            <div class="callout secondary">
+                <div class="grid-x">
+                <div class="large-6 cell">
+                    <p style="text-align:center;"><strong><em>Screenshot of the live website</em></strong></p>
+                    <img src="{{ url_for('screenshot_static', filename=comparison_result.metadata['original_screenshot']) }}">
+                </div>
+                <div class="large-6 cell">
+                    <p style="text-align:center;"><strong><em>Screenshot of the archived website</em></strong></p>
+                    <img src="{{ url_for('screenshot_static', filename=comparison_result.metadata['archived_screenshot']) }}">
+                </div>
+                </div>
+            </div>
+		  <div class="grid-x">
+		    <div class="large-1 cell">Score:</div>
+		    <div class="large-11 cell">{{ comparison_result.score }}</div>
+ 		  </div>
+ 	        </div>	
+	      {% endfor %}
+	      </div>
+	    {% endfor %}
+          </div>
+        </div>
+      </div>
+
+
+    <script src="/static/node_modules/jquery/dist/jquery.js"></script>
+    <script src="/static/node_modules/what-input/dist/what-input.js"></script>
+    <script src="/static/node_modules/foundation-sites/dist/js/foundation.js"></script>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
