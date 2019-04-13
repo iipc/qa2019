@@ -51,19 +51,22 @@ def normalize_crawl_entry(row):
 
 
 def fetch_har_entry_pairs(har_file, no_proxy=False):
+    """Create a list of URLs from the .har file.
+
+    Returns a list of dictionaries that include url, status code,
+    mimetype, and size.
+    """
     for g in glob(har_file):
         with open(g, 'r') as f:
             har = json.loads(f.read())
             entries = []
             for e in har['log']['entries']:
-                # this could be appended to a list and we return that instead.
-                # not yet clear on how we want to handle this.
-                #yield (e['request']['url'], e['response']['redirectURL'], e['response']['status'])
-                #yield {
                 url = e['request']['url']
                 if no_proxy:
+                    # try to remove playback app portion of the URL
                     url = extract_archived_url(url)
                     if url is None:
+                        # could be an asset of playback app
                         continue
                 entries.append({
                     'url': url,
@@ -76,6 +79,7 @@ def fetch_har_entry_pairs(har_file, no_proxy=False):
 
 
 def run(args):
+    """Start a Spark session and run specified command."""
     spark = SparkSession.builder.appName("CrawlLogs" ).getOrCreate()
     validate_args(args)
 
@@ -87,6 +91,10 @@ def run(args):
 
 
 def run_parse_crawl_job(spark, crawl_log, output_dir='parquet'):
+    """Store crawl log data in parquet format.
+
+    Defines a schema corresponding to fields of a Heritrix crawl log.
+    """
     schema = StructType.fromJson({'fields': [
         {'metadata': {},'name': 'timestamp', 'nullable': False, 'type': 'string'},
         {'metadata': {},'name': 'fetch_code', 'nullable': False, 'type': 'string'},
@@ -113,7 +121,7 @@ def run_parse_crawl_job(spark, crawl_log, output_dir='parquet'):
 
 
 def extract_archived_url(url):
-    """Remove playback app portion of URL for non-proxy replay"""
+    """Remove playback app portion of URL for non-proxy replay."""
     match = URL_EXTRACTOR.match(url)
     if match:
         url = match.group(1)
@@ -125,19 +133,23 @@ def extract_archived_url(url):
 
 
 def run_add_har(spark, parquet_file, har_file, no_proxy=False):
+    """For entries in the .har file, add corresponding crawl log data."""
     sc = spark.sparkContext
     sql_context = SQLContext(sc)
     df = sql_context.read.parquet(parquet_file)
     df.createOrReplaceTempView("logs")
 
+    # create a list of urls that appear in .har file(s)
     data = fetch_har_entry_pairs(har_file, no_proxy)
     urls = [x.get('url') for x in data]
     urls = set(urls)
+    # make a data frame from the crawl log data only for URLs
+    # appearing in the .har files
     results = df[df.downloaded_url.isin(urls)].collect()
-    # convert results to a dictionary for url lookup
+    # convert results to a dictionary for URL lookup; retain only
+    # needed fields
     log_data = {}
     for row in results:
-        # combine data base on dowloaded url; retain only some fields
         log_data.setdefault(row.downloaded_url, []).append({
             "timestamp": row.fetch_timestamp,
             "referrer": row.referrer,
@@ -146,7 +158,7 @@ def run_add_har(spark, parquet_file, har_file, no_proxy=False):
             "mime_type": row.mime_type,
         })
     for dicts in data:
-        # add in the crawl log data for the har entry
+        # add in the crawl log data for the har URL entry
         dicts["log_data"] = log_data.get(dicts["url"])
     return json.dumps(data)
 
