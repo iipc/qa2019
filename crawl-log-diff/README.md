@@ -27,6 +27,7 @@ optional arguments:
 
 **Examples**
 
+```
 python crawl-log-diff.py -f job1b-crawl.log job1a-crawl.log -s atlantico.fr
 RESULTS
 -----------------------------------
@@ -41,7 +42,9 @@ total:0.07:128:1806
 OK! total:0.07 (128 of 1806)
 OK! 503:0.00 (0 of 3)
 OK! 500:0.00 (0 of 2)
+```
 
+```
 python crawl-log-diff.py -f job1b-crawl.log job1a-crawl.log -s bienpublic.com
 RESULTS
 -----------------------------------
@@ -56,3 +59,4 @@ OK! total:0.95 (3361 of 3536)
 WARNING! 404:1.68 (47 of 28)
 301:1.00:22:22
 OK! 301:1.00 (22 of 22)
+```
