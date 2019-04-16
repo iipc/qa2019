@@ -1,7 +1,8 @@
-Under construction!!!
+**Under construction!!!**
 
 Tool for comparing 2 or more Heritrix Crawl Log files, meant to to detect issues (e.g. abnormal differences in statistics) in frequent crawls of same seeds.
 
+```
 usage: crawl-log-diff.py [-h] (-f [FILES [FILES ...]] | -j JOBDIR)
                          [-s SEEDS [SEEDS ...] | -d] [-l LIMIT] [-o OUTPUT]
 
@@ -22,6 +23,6 @@ optional arguments:
                         2 if set. Newest ones will be taken in first order
   -o OUTPUT, --output OUTPUT
                         under construction: how detailed and/or what format
-
+```
 
 
