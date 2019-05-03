@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 cmd="docker run -i --rm --cap-add=SYS_ADMIN 
 --network qa-logs-python_pywb-puppet --env-file env.render 
 -v $PWD/rendered:/output 

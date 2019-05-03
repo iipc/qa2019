@@ -80,6 +80,9 @@ def fetch_har_entry_pairs(har_file, no_proxy=False):
 
 def run(args):
     """Start a Spark session and run specified command."""
+    if args.job == "visualize":
+        print("visualize is not yet implemented")
+        sys.exit()
     spark = SparkSession.builder.appName("CrawlLogs" ).getOrCreate()
     validate_args(args)
 
@@ -169,7 +172,8 @@ if __name__ == "__main__":
         "--job",
         help="Type of job to run. Options: "
         "parse-crawl, add-har, visualize, all",
-        choices=["parse-crawl", "add-har", "visualize", "all"]
+        choices=["parse-crawl", "add-har", "visualize", "all"],
+        required=True
     )
     parser.add_argument(
         "--crawl-log",
@@ -189,13 +193,16 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output-dir",
         dest="output_dir",
-        help="Directory to save output to; cannot exist."
+        help=("Directory to save parquet file output to during parse-crawl job."
+              " The directory is created under /spark-warehouse and cannot pre-exist.")
     )
     parser.add_argument(
         "--no-proxy-mode",
         dest="no_proxy",
         action='store_true',
-        help="Non proxy mode indicates archived URL should be extracted from replay URL."
+        help=("Non proxy mode indicates archived URLs should be extracted from replay URLs"
+              " when processing .har files. Relevant when you create your .har files from"
+              " a non-proxy mode instance of replay software i.e. pywb, OpenWayback, etc.")
     )
 
     args = parser.parse_args()

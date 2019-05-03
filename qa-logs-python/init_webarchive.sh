@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 docker run --rm -v $PWD/webarchive:/webarchive webrecorder/pywb wb-manager init qa-test
 
 # move or symlink WARC files?
